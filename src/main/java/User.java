@@ -1,18 +1,38 @@
+
+import javax.persistence.*;
+
 /**
  * Created by Daria on 23.10.2014.
  */
+
+@Entity
+@Table(name = "Users")
 public class User {
-    private Long id;
+    @Id    @Column(name= "user_id")    @GeneratedValue()
+    private Long user_id;
+
+    @Column(name= "login")
     private String login;
+
+    @Column(name= "password")
     private String password;
+
+    @Column(name= "name")
     private String name;
+
+    @Column(name= "age")
     private Integer age;
+
+    @Column(name= "town")
     private String town;
+
+    @Column(name= "email")
     private String email;
+
+    @Column(name= "phone")
     private String phone;
 
-    public User(Long id, String login, String password, String name, Integer age, String town, String email, String phone) {
-        this.id = id;
+    public User( String login, String password, String name, Integer age, String town, String email, String phone) {
         this.login = login;
         this.password = password;
         this.name = name;
@@ -25,13 +45,12 @@ public class User {
     public User() {
     }
 
-    public Long getId() {
-
-        return id;
+    public Long getUser_id() {
+        return user_id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setUser_id(Long user_id) {
+        this.user_id = user_id;
     }
 
     public String getLogin() {
@@ -93,7 +112,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
+                "user_id=" + user_id +
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
@@ -113,7 +132,7 @@ public class User {
 
         if (age != null ? !age.equals(user.age) : user.age != null) return false;
         if (email != null ? !email.equals(user.email) : user.email != null) return false;
-        if (id != null ? !id.equals(user.id) : user.id != null) return false;
+        if (user_id != null ? !user_id.equals(user.user_id) : user.user_id != null) return false;
         if (login != null ? !login.equals(user.login) : user.login != null) return false;
         if (name != null ? !name.equals(user.name) : user.name != null) return false;
         if (password != null ? !password.equals(user.password) : user.password != null) return false;
@@ -125,7 +144,7 @@ public class User {
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
+        int result = user_id != null ? user_id.hashCode() : 0;
         result = 31 * result + (login != null ? login.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);

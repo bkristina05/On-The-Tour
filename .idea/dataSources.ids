@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component name="dataSourceStorage">
-  <data-source source="LOCAL" name="PostgreSQL - excursions@localhost" uuid="4c50ceb0-6f08-46df-9c6f-8f13545ce789">
+  <data-source source="LOCAL" name="PostgreSQL - excursions@localhost" uuid="ee52f26a-cd90-47e4-9981-4c8434172433">
     <database-info product="PostgreSQL" version="9.3.5" jdbc-version="4.0" driver-name="PostgreSQL Native Driver" driver-version="PostgreSQL 9.3 JDBC4 (build 1100)">
       <identifier-quote-string>&quot;</identifier-quote-string>
     </database-info>
@@ -2324,20 +2324,18 @@
       <column name="viewowner" sqlType="name" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
       <column name="definition" sqlType="text" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
     </table>
-    <table name="Excurs_Guide" schema="public" catalog="excursions" type="TABLE">
-      <column name="seq_excurs_guide" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIkV4Y3Vyc19HdWlkZV9zZXFfZXhjdXJzX2d1aWRlX3NlcSInOjpyZWdjbGFzcyk=" autoIncrement="true"/>
+    <table name="excurs_guide" schema="public" catalog="excursions" type="TABLE">
+      <column name="seq_excurs_guide" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnZXhjdXJzX2d1aWRlX3NlcV9leGN1cnNfZ3VpZGVfc2VxJzo6cmVnY2xhc3Mp" autoIncrement="true"/>
       <column name="excurs_id" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <column name="user_id" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="userguide_id" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <column name="date_excurs" sqlType="timestamp" precision="29" scale="6" nullable="true" jdbcType="93"/>
       <column name="tourist_quantity" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <primary-key name="Excurs_Guide_pkey" columns="seq_excurs_guide"/>
-      <foreign-key name="Excurs_Guide_seq_excurs_guide_fkey" columns="seq_excurs_guide" ref-table="Excurs_Guide" ref-schema="public" ref-catalog="" ref-columns="seq_excurs_guide" update-rule="0" delete-rule="0" deferrability="2"/>
-      <foreign-key name="Excurs_Guide_excurs_id_fkey" columns="excurs_id" ref-table="Excursion" ref-schema="public" ref-catalog="" ref-columns="excurs_id" update-rule="0" delete-rule="0" deferrability="2"/>
-      <foreign-key name="Excurs_Guide_user_id_fkey" columns="user_id" ref-table="Users" ref-schema="public" ref-catalog="" ref-columns="user_id" update-rule="0" delete-rule="0" deferrability="2"/>
-      <exported-key name="Excurs_Guide_seq_excurs_guide_fkey" table="Excurs_Guide" schema="public" catalog="excursions" columns="seq_excurs_guide"/>
-      <exported-key name="Excurs_Tourist_excurs_guide_seq_fkey" table="Excurs_Tourist" schema="public" catalog="excursions" columns="excurs_guide_seq"/>
+      <primary-key name="excurs_guide_pkey" columns="seq_excurs_guide"/>
+      <foreign-key name="excurs_guide_excurs_id_fkey" columns="excurs_id" ref-table="excursion" ref-schema="public" ref-catalog="" ref-columns="excurs_id" update-rule="0" delete-rule="0" deferrability="2"/>
+      <foreign-key name="excurs_guide_user_id_fkey" columns="userguide_id" ref-table="users" ref-schema="public" ref-catalog="" ref-columns="user_id" update-rule="0" delete-rule="0" deferrability="2"/>
+      <exported-key name="excurs_tourist_excurs_guide_seq_fkey" table="excurs_tourist" schema="public" catalog="excursions" columns="excurs_guide_seq"/>
     </table>
-    <table name="Excurs_Guide_seq_excurs_guide_seq" schema="public" catalog="excursions" type="SEQUENCE">
+    <table name="excurs_guide_seq_excurs_guide_seq" schema="public" catalog="excursions" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
       <column name="last_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <column name="start_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
@@ -2349,15 +2347,15 @@
       <column name="is_cycled" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
       <column name="is_called" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
     </table>
-    <table name="Excurs_Tourist" schema="public" catalog="excursions" type="TABLE">
-      <column name="sequence_id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIkV4Y3Vyc19Ub3VyaXN0X3NlcXVlbmNlX2lkX3NlcSInOjpyZWdjbGFzcyk=" autoIncrement="true"/>
+    <table name="excurs_tourist" schema="public" catalog="excursions" type="TABLE">
+      <column name="sequence_id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnZXhjdXJzX3RvdXJpc3Rfc2VxdWVuY2VfaWRfc2VxJzo6cmVnY2xhc3Mp" autoIncrement="true"/>
       <column name="user_id" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <column name="excurs_guide_seq" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <primary-key name="Excurs_Tourist_pkey" columns="sequence_id"/>
-      <foreign-key name="Excurs_Tourist_excurs_guide_seq_fkey" columns="excurs_guide_seq" ref-table="Excurs_Guide" ref-schema="public" ref-catalog="" ref-columns="seq_excurs_guide" update-rule="0" delete-rule="0" deferrability="2"/>
-      <foreign-key name="Excurs_Tourist_user_id_fkey" columns="user_id" ref-table="Users" ref-schema="public" ref-catalog="" ref-columns="user_id" update-rule="0" delete-rule="0" deferrability="2"/>
+      <primary-key name="excurs_tourist_pkey" columns="sequence_id"/>
+      <foreign-key name="excurs_tourist_excurs_guide_seq_fkey" columns="excurs_guide_seq" ref-table="excurs_guide" ref-schema="public" ref-catalog="" ref-columns="seq_excurs_guide" update-rule="0" delete-rule="0" deferrability="2"/>
+      <foreign-key name="excurs_tourist_user_id_fkey" columns="user_id" ref-table="users" ref-schema="public" ref-catalog="" ref-columns="user_id" update-rule="0" delete-rule="0" deferrability="2"/>
     </table>
-    <table name="Excurs_Tourist_sequence_id_seq" schema="public" catalog="excursions" type="SEQUENCE">
+    <table name="excurs_tourist_sequence_id_seq" schema="public" catalog="excursions" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
       <column name="last_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <column name="start_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
@@ -2369,17 +2367,18 @@
       <column name="is_cycled" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
       <column name="is_called" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
     </table>
-    <table name="Excursion" schema="public" catalog="excursions" type="TABLE">
-      <column name="excurs_id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIkV4Y3Vyc2lvbl9leGN1cnNfaWRfc2VxIic6OnJlZ2NsYXNzKQ==" autoIncrement="true"/>
+    <table name="excursion" schema="public" catalog="excursions" type="TABLE">
+      <column name="excurs_id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnZXhjdXJzaW9uX2V4Y3Vyc19pZF9zZXEnOjpyZWdjbGFzcyk=" autoIncrement="true"/>
       <column name="place" sqlType="text" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
       <column name="town" sqlType="text" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
       <column name="max_tourists" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <column name="price" sqlType="float8" precision="17" scale="17" nullable="true" jdbcType="8"/>
       <column name="duration" sqlType="time" precision="15" scale="6" nullable="true" jdbcType="92"/>
-      <primary-key name="Excursion_pkey" columns="excurs_id"/>
-      <exported-key name="Excurs_Guide_excurs_id_fkey" table="Excurs_Guide" schema="public" catalog="excursions" columns="excurs_id"/>
+      <primary-key name="excursion_pkey" columns="excurs_id"/>
+      <exported-key name="excurs_guide_excurs_id_fkey" table="excurs_guide" schema="public" catalog="excursions" columns="excurs_id"/>
+      <exported-key name="rating_excurs_id_fkey" table="rating" schema="public" catalog="excursions" columns="excurs_id"/>
     </table>
-    <table name="Excursion_excurs_id_seq" schema="public" catalog="excursions" type="SEQUENCE">
+    <table name="excursion_excurs_id_seq" schema="public" catalog="excursions" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
       <column name="last_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <column name="start_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
@@ -2391,34 +2390,43 @@
       <column name="is_cycled" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
       <column name="is_called" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
     </table>
-    <table name="Type_Name" schema="public" catalog="excursions" type="TABLE">
+    <table name="rating" schema="public" catalog="excursions" type="TABLE">
+      <column name="excurs_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="user_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="rating" sqlType="float8" precision="17" scale="17" nullable="true" jdbcType="8"/>
+      <primary-key name="rating_pkey" columns="excurs_id,user_id"/>
+      <foreign-key name="rating_excurs_id_fkey" columns="excurs_id" ref-table="excursion" ref-schema="public" ref-catalog="" ref-columns="excurs_id" update-rule="2" delete-rule="0" deferrability="2"/>
+      <foreign-key name="rating_user_id_fkey" columns="user_id" ref-table="users" ref-schema="public" ref-catalog="" ref-columns="user_id" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="type_name" schema="public" catalog="excursions" type="TABLE">
       <column name="type_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="type_name" sqlType="text" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <primary-key name="Type_Name_pkey" columns="type_id"/>
-      <exported-key name="User_Type_type_id_fkey" table="User_Type" schema="public" catalog="excursions" columns="type_id"/>
+      <primary-key name="type_name_pkey" columns="type_id"/>
+      <exported-key name="user_type_type_id_fkey" table="user_type" schema="public" catalog="excursions" columns="type_id"/>
     </table>
-    <table name="User_Type" schema="public" catalog="excursions" type="TABLE">
+    <table name="user_type" schema="public" catalog="excursions" type="TABLE">
       <column name="type_id" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <column name="user_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <primary-key name="User_Type_pkey" columns="user_id"/>
-      <foreign-key name="User_Type_type_id_fkey" columns="type_id" ref-table="Type_Name" ref-schema="public" ref-catalog="" ref-columns="type_id" update-rule="0" delete-rule="2" deferrability="2"/>
-      <foreign-key name="User_Type_user_id_fkey" columns="user_id" ref-table="Users" ref-schema="public" ref-catalog="" ref-columns="user_id" update-rule="0" delete-rule="0" deferrability="2"/>
+      <primary-key name="user_type_pkey" columns="user_id"/>
+      <foreign-key name="user_type_type_id_fkey" columns="type_id" ref-table="type_name" ref-schema="public" ref-catalog="" ref-columns="type_id" update-rule="0" delete-rule="2" deferrability="2"/>
+      <foreign-key name="user_type_user_id_fkey" columns="user_id" ref-table="users" ref-schema="public" ref-catalog="" ref-columns="user_id" update-rule="0" delete-rule="0" deferrability="2"/>
     </table>
-    <table name="Users" schema="public" catalog="excursions" type="TABLE">
-      <column name="user_id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIlVzZXJzX3VzZXJfaWRfc2VxIic6OnJlZ2NsYXNzKQ==" autoIncrement="true"/>
+    <table name="users" schema="public" catalog="excursions" type="TABLE">
+      <column name="user_id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgndXNlcnNfdXNlcl9pZF9zZXEnOjpyZWdjbGFzcyk=" autoIncrement="true"/>
       <column name="login" sqlType="text" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
       <column name="password" sqlType="text" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
       <column name="name" sqlType="text" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
       <column name="age" sqlType="int2" precision="5" scale="0" nullable="true" jdbcType="5"/>
       <column name="town" sqlType="text" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="e-mail" sqlType="text" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
+      <column name="email" sqlType="text" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
       <column name="phone" sqlType="text" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <primary-key name="Users_pkey" columns="user_id"/>
-      <exported-key name="Excurs_Guide_user_id_fkey" table="Excurs_Guide" schema="public" catalog="excursions" columns="user_id"/>
-      <exported-key name="Excurs_Tourist_user_id_fkey" table="Excurs_Tourist" schema="public" catalog="excursions" columns="user_id"/>
-      <exported-key name="User_Type_user_id_fkey" table="User_Type" schema="public" catalog="excursions" columns="user_id"/>
+      <primary-key name="users_pkey" columns="user_id"/>
+      <exported-key name="excurs_guide_user_id_fkey" table="excurs_guide" schema="public" catalog="excursions" columns="userguide_id"/>
+      <exported-key name="excurs_tourist_user_id_fkey" table="excurs_tourist" schema="public" catalog="excursions" columns="user_id"/>
+      <exported-key name="rating_user_id_fkey" table="rating" schema="public" catalog="excursions" columns="user_id"/>
+      <exported-key name="user_type_user_id_fkey" table="user_type" schema="public" catalog="excursions" columns="user_id"/>
     </table>
-    <table name="Users_user_id_seq" schema="public" catalog="excursions" type="SEQUENCE">
+    <table name="users_user_id_seq" schema="public" catalog="excursions" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
       <column name="last_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <column name="start_value" sqlType="int8" precision="19" scale="0" nullable="false" jdbcType="-5"/>
