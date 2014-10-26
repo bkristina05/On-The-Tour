@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>DATABASE</ID>
+  <OriginalElement>ee52f26a-cd90-47e4-9981-4c8434172433.schema:excursions.public</OriginalElement>
+  <nodes>
+    <node x="618.375" y="60.0">ee52f26a-cd90-47e4-9981-4c8434172433.table:excursions.public.type_name</node>
+    <node x="273.0" y="259.0">ee52f26a-cd90-47e4-9981-4c8434172433.table:excursions.public.rating</node>
+    <node x="0.0" y="239.0">ee52f26a-cd90-47e4-9981-4c8434172433.table:excursions.public.excurs_guide</node>
+    <node x="585.875" y="269.0">ee52f26a-cd90-47e4-9981-4c8434172433.table:excursions.public.user_type</node>
+    <node x="76.25" y="20.0">ee52f26a-cd90-47e4-9981-4c8434172433.table:excursions.public.excursion</node>
+    <node x="246.75" y="418.0">ee52f26a-cd90-47e4-9981-4c8434172433.table:excursions.public.excurs_tourist</node>
+    <node x="346.375" y="0.0">ee52f26a-cd90-47e4-9981-4c8434172433.table:excursions.public.users</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="ee52f26a-cd90-47e4-9981-4c8434172433.table:excursions.public.excurs_guide" target="ee52f26a-cd90-47e4-9981-4c8434172433.table:excursions.public.users">
+      <point x="63.25" y="-64.5" />
+      <point x="189.75" y="219.0" />
+      <point x="377.875" y="219.0" />
+      <point x="-94.5" y="94.5" />
+    </edge>
+    <edge source="ee52f26a-cd90-47e4-9981-4c8434172433.table:excursions.public.excurs_tourist" target="ee52f26a-cd90-47e4-9981-4c8434172433.table:excursions.public.users">
+      <point x="45.25" y="-44.5" />
+      <point x="382.5" y="393.0" />
+      <point x="498.25" y="393.0" />
+      <point x="498.25" y="219.0" />
+      <point x="503.875" y="219.0" />
+      <point x="31.5" y="94.5" />
+    </edge>
+    <edge source="ee52f26a-cd90-47e4-9981-4c8434172433.table:excursions.public.excurs_tourist" target="ee52f26a-cd90-47e4-9981-4c8434172433.table:excursions.public.excurs_guide">
+      <point x="-45.25" y="-44.5" />
+      <point x="292.0" y="393.0" />
+      <point x="126.5" y="393.0" />
+      <point x="0.0" y="64.5" />
+    </edge>
+    <edge source="ee52f26a-cd90-47e4-9981-4c8434172433.table:excursions.public.user_type" target="ee52f26a-cd90-47e4-9981-4c8434172433.table:excursions.public.users">
+      <point x="-33.0" y="-34.5" />
+      <point x="618.875" y="219.0" />
+      <point x="566.875" y="219.0" />
+      <point x="94.5" y="94.5" />
+    </edge>
+    <edge source="ee52f26a-cd90-47e4-9981-4c8434172433.table:excursions.public.rating" target="ee52f26a-cd90-47e4-9981-4c8434172433.table:excursions.public.users">
+      <point x="41.25" y="-44.5" />
+      <point x="396.75" y="219.0" />
+      <point x="440.875" y="219.0" />
+      <point x="-31.5" y="94.5" />
+    </edge>
+    <edge source="ee52f26a-cd90-47e4-9981-4c8434172433.table:excursions.public.rating" target="ee52f26a-cd90-47e4-9981-4c8434172433.table:excursions.public.excursion">
+      <point x="-41.25" y="-44.5" />
+      <point x="314.25" y="209.0" />
+      <point x="245.0" y="209.0" />
+      <point x="56.25" y="74.5" />
+    </edge>
+    <edge source="ee52f26a-cd90-47e4-9981-4c8434172433.table:excursions.public.user_type" target="ee52f26a-cd90-47e4-9981-4c8434172433.table:excursions.public.type_name">
+      <point x="33.0" y="-34.5" />
+      <point x="0.0" y="34.5" />
+    </edge>
+    <edge source="ee52f26a-cd90-47e4-9981-4c8434172433.table:excursions.public.excurs_guide" target="ee52f26a-cd90-47e4-9981-4c8434172433.table:excursions.public.excursion">
+      <point x="-63.25" y="-64.5" />
+      <point x="63.25" y="219.0" />
+      <point x="132.5" y="219.0" />
+      <point x="-56.25" y="74.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.966321243523316" x="681.0723860589812" y="264.7587131367292" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Key columns</Category>
+    <Category>Columns</Category>
+  </Categories>
+</Diagram>
+
