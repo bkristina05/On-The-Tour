@@ -46,16 +46,16 @@ CREATE TABLE Excursion
 
 CREATE TABLE Excurs_Guide
 (
-  seq_excurs_guide serial NOT NULL,
+ seq_excurs_guide integer NOT NULL,
 excurs_id integer,
-userGuide_id integer,
+user_guide_id integer,
 date_excurs timestamp without time zone,
 tourist_quantity integer,
 CONSTRAINT Excurs_Guide_pkey PRIMARY KEY (seq_excurs_guide),
 CONSTRAINT Excurs_Guide_excurs_id_fkey FOREIGN KEY (excurs_id)
 REFERENCES Excursion (excurs_id) MATCH SIMPLE
 ON UPDATE CASCADE ON DELETE CASCADE,
-CONSTRAINT Excurs_Guide_user_id_fkey FOREIGN KEY (userGuide_id)
+CONSTRAINT Excurs_Guide_user_id_fkey FOREIGN KEY (user_guide_id)
 REFERENCES Users (user_id) MATCH SIMPLE
 ON UPDATE CASCADE ON DELETE CASCADE
 );
@@ -63,13 +63,13 @@ ON UPDATE CASCADE ON DELETE CASCADE
 
 CREATE TABLE Excurs_Tourist
 (
-  sequence_id serial NOT NULL,
+  sequence_id integer NOT NULL,
 	user_id integer,
 	excurs_guide_seq integer,
 	CONSTRAINT Excurs_Tourist_pkey PRIMARY KEY (sequence_id),
 	CONSTRAINT Excurs_Tourist_excurs_guide_seq_fkey FOREIGN KEY (excurs_guide_seq)
   REFERENCES Excurs_Guide (seq_excurs_guide) MATCH SIMPLE
-  ON UPDATE CASCADE ON DELETE CASCADE,
+  ON UPDATE CASCADE ON DELETE SET NULL,
 	CONSTRAINT Excurs_Tourist_user_id_fkey FOREIGN KEY (user_id)
   REFERENCES Users (user_id) MATCH SIMPLE
   ON UPDATE CASCADE ON DELETE CASCADE
