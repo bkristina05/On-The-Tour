@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Table(name = "Users")
 public class User {
     @Id    @Column(name= "user_id")    @GeneratedValue()
-    private Long user_id;
+    private Integer user_id;
 
     @Column(name= "login")
     private String login;
@@ -45,11 +45,11 @@ public class User {
     public User() {
     }
 
-    public Long getUser_id() {
+    public Integer getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(Long user_id) {
+    public void setUser_id(Integer user_id) {
         this.user_id = user_id;
     }
 
