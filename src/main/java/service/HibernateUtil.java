@@ -1,7 +1,8 @@
-/**
+package service; /**
  * Created by Daria on 23.10.2014.
  */
 
+import db.User;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;

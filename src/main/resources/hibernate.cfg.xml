@@ -6,7 +6,7 @@
 <hibernate-configuration>
 
     <session-factory>
-        <!--<mapping resource="Users.hbm.xml"/>-->
+        <!--<mapping class="db.User" />-->
     </session-factory>
 
 </hibernate-configuration>
