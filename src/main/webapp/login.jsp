@@ -1,30 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=utf8"
-         pageEncoding="utf8"%>
-<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+	pageEncoding="utf8"%>
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title></title>
+
 </head>
 <body>
 
-<form:form method="post" action="" >
+<form method="POST" action="login">
     <table>
-        <tr>
-            <td><form:label path="login">
-                Логин
-            </form:label></td>
-            <td><form:input path="login" /></td>
-        </tr>
-        <tr>
-            <td align="right"><spring:message code="label.password" /></td>
-            <td><input type="password" name="j_password" /></td>
-        </tr>
-        <tr>
-            <td colspan="2" align="right"><input type="submit" value="Войти" />
-                <input type="reset" value="Reset" /></td>
-        </tr>
+        <tr><h1>Авторизация</h1></tr>
+        <tr><td>Логин</td><td> <input type='text' maxlength='16' name="login"/></td></tr>
+        <tr><td>Пароль</td><td> <input type='text' maxlength='16' name="password"/></td></tr>
+        <tr><td colspan="2" align="right"><input type="submit" name="enter" value="Войти"></tr>
+        <tr><td colspan="2" align="right"><input type="submit" name="registration" value="Регистрация"></td></tr>
     </table>
-</form:form>
+</form>
+
 </body>
 </html>
