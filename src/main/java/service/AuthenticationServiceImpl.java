@@ -2,7 +2,6 @@ package service;
 
 import domain.User;
 import org.hibernate.SessionFactory;
-import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,16 +12,15 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Autowired
     private SessionFactory sessionFactory;
 
-
     @Transactional
     @Override
     public boolean addContact(User user){
-        try {
-            sessionFactory.getCurrentSession().save(user);
-            return true;
-        }catch (ConstraintViolationException e){
-            return false;
-        }
+        sessionFactory.getCurrentSession().save(user);
+        Integer user_id = user.getUser_id();
+        System.out.println("user_id = " + user_id);
+//        UserType userType = new UserType(user_id,"user");
+//        sessionFactory.getCurrentSession().save(userType);
+        return true;
     }
 
     @Override

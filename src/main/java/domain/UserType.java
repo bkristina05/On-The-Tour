@@ -13,34 +13,36 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "User_Type")
 public class UserType {
+
     @Id
-    @Column(name = "type_id")
-    private Integer type_id;
-
     @Column(name = "user_id")
-    private String user_id;
+    private Integer user_id;
 
-    public UserType(Integer type_id, String user_id) {
-        this.type_id = type_id;
+    @Column(name = "type_id")
+    private String type_id;
+
+
+    public UserType(Integer user_id,String type_id) {
         this.user_id = user_id;
+        this.type_id = type_id;
     }
 
     public UserType() {
     }
 
-    public Integer getType_id() {
+    public String getType_id() {
         return type_id;
     }
 
-    public void setType_id(Integer type_id) {
+    public void setType_id(String type_id) {
         this.type_id = type_id;
     }
 
-    public String getUser_id() {
+    public Integer getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(String user_id) {
+    public void setUser_id(Integer user_id) {
         this.user_id = user_id;
     }
 

@@ -11,8 +11,7 @@
     <title></title>
 </head>
 <body>
-
-<span>${message}</span><br/>
+<span>${message}</span>
 <form method="POST" action="signup">
     <table>
         <tr><h1>Регистрация</h1></tr>

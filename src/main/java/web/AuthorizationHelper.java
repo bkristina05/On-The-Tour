@@ -20,5 +20,42 @@ public class AuthorizationHelper {
         }
     }
 
+    public static boolean isPhoneValid(String phone){
+        final Pattern pattern = Pattern.compile("^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}");
+        final Matcher matcher = pattern.matcher(phone);
+        if (matcher.find()) {
+            System.out.println("Phone подходит");
+            return true;
+
+        } else {
+            System.out.println("Phone имеет неверный формат");
+            return false;
+        }
+    }
+
+    public static boolean isLoginValid(String login) {
+        final Pattern pattern = Pattern.compile("^[A-Za-z]([\\\\.A-Za-z0-9-]{1,18})([A-Za-z0-9])");
+        final Matcher matcher = pattern.matcher(login);
+        if (matcher.find()) {
+            System.out.println("Логин подходит");
+            return true;
+
+        } else {
+            System.out.println("Логин имеет неверный формат");
+            return false;
+        }
+    }
+
+    public static boolean isAgeValid(Integer age){
+        if (age < 90 && age > 15) {
+            return true;
+        } else {
+            System.out.println("Минимальный(максимальный) возраст для регистрации на сайте 15(90)");
+            return false;
+        }
+    }
+
+
+
 
 }
