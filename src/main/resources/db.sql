@@ -35,12 +35,15 @@ CREATE TABLE User_Type
 
 CREATE TABLE Excursion
 (
+ CREATE TABLE excursion
+(
   excurs_id integer NOT NULL,
-	place text,
-	town text,
-	max_tourists integer,
-	price double precision,
-	duration time without time zone,
+  place text,
+  town text,
+  max_tourists integer,
+  price double precision,
+  tour_starts timestamp without time zone,
+  tour_end timestamp without time zone,
 	CONSTRAINT Excursion_pkey PRIMARY KEY (excurs_id)
 );
 
