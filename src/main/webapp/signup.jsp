@@ -11,9 +11,11 @@
     <title></title>
 </head>
 <body>
+
+<span>${message}</span><br/>
 <form method="POST" action="signup">
     <table>
-        <tr>Регистрация</tr>
+        <tr><h1>Регистрация</h1></tr>
         <tr><td>ФИО</td><td> <input type='text'  name="name"/></td></tr>
         <tr><td>Логин</td><td> <input type='text' maxlength='16' name="login"/></td></tr>
         <tr><td>Пароль</td><td> <input type='text' maxlength='16' name="password"/></td></tr>
@@ -24,6 +26,5 @@
         <tr><td colspan="2"><input type="submit" name="signup" value="Зарегистрироваться" /></td></tr>
     </table>
 </form>
-
 </body>
 </html>

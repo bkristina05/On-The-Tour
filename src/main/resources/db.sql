@@ -8,7 +8,9 @@ CREATE TABLE Users
 	town text,
 	email text,
 	phone text,
-	CONSTRAINT Users_pkey PRIMARY KEY (user_id)
+	CONSTRAINT Users_pkey PRIMARY KEY (user_id),
+	CONSTRAINT user_email_key UNIQUE (email),
+  CONSTRAINT user_login_key UNIQUE (login)
 );
 
 
@@ -34,8 +36,6 @@ CREATE TABLE User_Type
 
 
 CREATE TABLE Excursion
-(
- CREATE TABLE excursion
 (
   excurs_id integer NOT NULL,
   place text,
@@ -94,8 +94,5 @@ CREATE TABLE rating
   REFERENCES Users (user_id) MATCH SIMPLE
   ON UPDATE NO ACTION ON DELETE NO ACTION
 );
-
-
-
 
 

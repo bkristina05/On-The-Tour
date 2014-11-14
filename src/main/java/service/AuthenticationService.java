@@ -4,7 +4,8 @@ import domain.User;
 
 public interface AuthenticationService {
 
-	public void addContact(User user);
+	public boolean addContact(User user);
     public void checkAuthorization(String login, String password);
+    public boolean userNotExists(String login, String password, String email);
 
 }

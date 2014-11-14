@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="1909136350">
-    <data-source source="LOCAL" name="PostgreSQL - excursions@localhost" uuid="24c5ac24-815b-409b-b305-bdf4095b27d7">
+  <component name="DataSourceManagerImpl" format="xml" hash="1219641426">
+    <data-source source="LOCAL" name="Excursions" uuid="44015a20-2b41-4236-a59c-5529b429dda4">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
