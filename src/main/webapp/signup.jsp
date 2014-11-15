@@ -6,13 +6,13 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 <head>
     <title></title>
 </head>
 <body>
-<span>${message}</span>
-<form method="POST" action="signup">
+<form method="POST" action="signup">${message}
     <table>
         <tr><h1>Регистрация</h1></tr>
         <tr><td>ФИО</td><td> <input type='text'  name="name"/></td></tr>
@@ -23,6 +23,7 @@
         <tr><td>Email</td><td> <input type='text'  name="email"/></td></tr>
         <tr><td>Телефон</td><td> <input type='text'  name="phone"/></td></tr>
         <tr><td colspan="2"><input type="submit" name="signup" value="Зарегистрироваться" /></td></tr>
+        <tr><td colspan="2" align="right"><input type="submit" name="enter" value="Войти"></tr>
     </table>
 </form>
 </body>

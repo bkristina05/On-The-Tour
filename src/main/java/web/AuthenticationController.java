@@ -21,8 +21,11 @@ public class AuthenticationController {
     String message = "";
 
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
-    public ModelAndView registration(HttpServletRequest request,HttpServletResponse response)  {
+    public ModelAndView registration(HttpServletRequest request,HttpServletResponse response) throws IOException {
         System.out.println("AuthenticationController.registration");
+        if(request.getParameter("enter")!= null){
+            response.sendRedirect("login.jsp");
+        }
         ModelAndView modelAndView = new ModelAndView();
 
         String name = request.getParameter("name");
@@ -34,8 +37,7 @@ public class AuthenticationController {
         String phone = request.getParameter("phone");
 
         if (ageString == null || ageString.trim().isEmpty()|| !AuthorizationHelper.isAgeValid(Integer.valueOf(ageString.trim()))) {
-            modelAndView.addObject("message", "Поле Возраст имеет неверный формат");
-            modelAndView.setViewName("signup");
+            modelAndView.addObject("message", "Поле Возраст имеет неверный формат. Минимальный(максимальный) возраст для регистрации на сайте 15(90)");
             return modelAndView;
         }
 
@@ -43,20 +45,35 @@ public class AuthenticationController {
         if (request.getParameter("age") != null) {
             age = Integer.valueOf(request.getParameter("age"));
         }
+        if (name == null || name.trim().isEmpty()) {
+            modelAndView.addObject("message", "Поле ФИО имеет неверный формат");
+            return modelAndView;
+        }
 
-        if(name==null || login==null || password==null  || town==null || email==null || phone==null) message = "Данные введены не во все поля";
+        if (login == null || login.trim().isEmpty()|| !AuthorizationHelper.isLoginValid(login)) {
+            modelAndView.addObject("message", "Поле Логин имеет неверный формат");
+            return modelAndView;
+        }
 
-        if(name.isEmpty()) message = "Поле ФИО содержит пустое значение";
+        if (password == null || password.trim().isEmpty()) {
+            modelAndView.addObject("message", "Поле Пароль имеет неверный формат");
+            return modelAndView;
+        }
 
-        if(login.isEmpty()) message = "Поле Логин содержит пустое значение";
+        if (town == null || town.trim().isEmpty()) {
+            modelAndView.addObject("message", "Поле Город имеет неверный формат");
+            return modelAndView;
+        }
 
-        if(password.isEmpty()) message = "Поле Пароль содержит пустое значение";
+        if (email == null || email.trim().isEmpty()|| !AuthorizationHelper.isEmailValid(email)) {
+            modelAndView.addObject("message", "Поле Email имеет неверный формат");
+            return modelAndView;
+        }
 
-        if(town.isEmpty()) message = "Поле Город содержит пустое значение";
-
-        if(email.isEmpty()) message = "Поле Email содержит пустое значение";
-
-        if(phone.isEmpty())message = "Поле Телефон содержит пустое значение";
+        if (phone == null || phone.trim().isEmpty()|| !AuthorizationHelper.isPhoneValid(phone)) {
+            modelAndView.addObject("message", "Phone имеет неверный формат");
+            return modelAndView;
+        }
 
         System.out.println("name = " + name);
         System.out.println("login = " + login);
@@ -66,45 +83,46 @@ public class AuthenticationController {
         System.out.println("email = " + email);
         System.out.println("phone = " + phone);
 
-        if (!AuthorizationHelper.isLoginValid(login))  message = "Логин имеет неверный формат";
-        if (!AuthorizationHelper.isAgeValid(age)) message = "Минимальный(максимальный) возраст для регистрации на сайте 15(90)";
-        if (!AuthorizationHelper.isEmailValid(email))  message = "Email имеет неверный формат";
-        if (!AuthorizationHelper.isPhoneValid(phone))  message = "Phone имеет неверный формат";
         if(message==""){
             User user = new User(login, password, name, age, town, email, phone);
-            boolean isAdded = authenticationService.addContact(user);
+            boolean isAdded = authenticationService.addUser(user);
             if(!isAdded) message = "Такой логин или Email уже используется";
+            else message = "Вы успешно зарегистрированы!";
 
         }
 
 //            User user = new User(login, password, name, age, town, email, phone);
-//            authenticationService.addContact(user);
+//            authenticationService.addUser(user);
 //            System.out.println("user = " + user);
-//            boolean isAdded = authenticationService.addContact(user);
+//            boolean isAdded = authenticationService.addUser(user);
 //            if (isAdded) response.sendRedirect("test.jsp");
 //            else response.sendRedirect("login.jsp");
         modelAndView.addObject("message", message);
-        modelAndView.setViewName("signup");
+
+        //modelAndView.setViewName("signup");
         return modelAndView;
     }
 
 
-
-
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public void authorization(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-
-        String login = request.getParameter("login");
-        String password = request.getParameter("password");
-        System.out.println("login = " + login);
-        if(request.getParameter("enter")!= null){
-
-            response.sendRedirect("test.jsp");
-        }
+    public ModelAndView authorization(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         if(request.getParameter("registration")!= null){
             response.sendRedirect("signup.jsp");
         }
+        ModelAndView modelAndView = new ModelAndView();
+        String login = request.getParameter("login");
+        String password = request.getParameter("password");
+        System.out.println("login = " + login);
 
+        boolean isAuthorizated = authenticationService.checkAuthorization(login, AuthorizationHelper.md5(password));
+        if (isAuthorizated) {
+           response.sendRedirect("test.jsp");
+
+        }else {
+            modelAndView.addObject("message", "Неверная комбинация логин-пароль");
+
+        }
+        return modelAndView;
     }
 
 }

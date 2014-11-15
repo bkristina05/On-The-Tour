@@ -14,27 +14,27 @@ import javax.persistence.Table;
 @Table(name = "User_Type")
 public class UserType {
 
+    @Column(name = "type_id")
+    private Integer type_id;
+
     @Id
     @Column(name = "user_id")
     private Integer user_id;
 
-    @Column(name = "type_id")
-    private String type_id;
-
-
-    public UserType(Integer user_id,String type_id) {
-        this.user_id = user_id;
+    public UserType(Integer type_id, Integer user_id) {
         this.type_id = type_id;
+        this.user_id = user_id;
+
     }
 
     public UserType() {
     }
 
-    public String getType_id() {
+    public Integer getType_id() {
         return type_id;
     }
 
-    public void setType_id(String type_id) {
+    public void setType_id(Integer type_id) {
         this.type_id = type_id;
     }
 

@@ -8,7 +8,7 @@
 
 </head>
 <body>
-
+<span>${message}</span>
 <form method="POST" action="login">
     <table>
         <tr><h1>Авторизация</h1></tr>
