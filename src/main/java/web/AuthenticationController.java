@@ -3,8 +3,10 @@ package web;
 import domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import service.AuthenticationService;
 
@@ -14,11 +16,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Controller
+@SessionAttributes("login")
 public class AuthenticationController {
 
 	@Autowired
 	private AuthenticationService authenticationService;
     String message = "";
+    String messageError = "";
 
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
     public ModelAndView registration(HttpServletRequest request,HttpServletResponse response) throws IOException {
@@ -31,13 +35,14 @@ public class AuthenticationController {
         String name = request.getParameter("name");
         String login = request.getParameter("login");
         String password = request.getParameter("password");
+        String confirmationPassword = request.getParameter("confirmation_password");
         String ageString = request.getParameter("age");
         String town = request.getParameter("town");
         String email = request.getParameter("email");
         String phone = request.getParameter("phone");
 
         if (ageString == null || ageString.trim().isEmpty()|| !AuthorizationHelper.isAgeValid(Integer.valueOf(ageString.trim()))) {
-            modelAndView.addObject("message", "Поле Возраст имеет неверный формат. Минимальный(максимальный) возраст для регистрации на сайте 15(90)");
+            modelAndView.addObject("messageError", "Поле Возраст имеет неверный формат. Минимальный (максимальный) возраст для регистрации на сайте 15 (90)");
             return modelAndView;
         }
 
@@ -46,32 +51,42 @@ public class AuthenticationController {
             age = Integer.valueOf(request.getParameter("age"));
         }
         if (name == null || name.trim().isEmpty()) {
-            modelAndView.addObject("message", "Поле ФИО имеет неверный формат");
+            modelAndView.addObject("messageError", "Поле ФИО имеет неверный формат");
             return modelAndView;
         }
 
         if (login == null || login.trim().isEmpty()|| !AuthorizationHelper.isLoginValid(login)) {
-            modelAndView.addObject("message", "Поле Логин имеет неверный формат");
+            modelAndView.addObject("messageError", "Поле Логин имеет неверный формат");
             return modelAndView;
         }
 
         if (password == null || password.trim().isEmpty()) {
-            modelAndView.addObject("message", "Поле Пароль имеет неверный формат");
+            modelAndView.addObject("messageError", "Поле Пароль имеет неверный формат");
             return modelAndView;
         }
 
+        if (confirmationPassword == null || confirmationPassword.trim().isEmpty()){
+            modelAndView.addObject("messageError", "Поле Подтверждение пароля имеет неверный формат");
+            return modelAndView;
+        }
+
+        if(!confirmationPassword.equals(password)){
+           modelAndView.addObject("messageError", "Пароли не совпадают!");
+           return modelAndView;
+        }
+
         if (town == null || town.trim().isEmpty()) {
-            modelAndView.addObject("message", "Поле Город имеет неверный формат");
+            modelAndView.addObject("messageError", "Поле Город имеет неверный формат");
             return modelAndView;
         }
 
         if (email == null || email.trim().isEmpty()|| !AuthorizationHelper.isEmailValid(email)) {
-            modelAndView.addObject("message", "Поле Email имеет неверный формат");
+            modelAndView.addObject("messageError", "Поле Email имеет неверный формат");
             return modelAndView;
         }
 
         if (phone == null || phone.trim().isEmpty()|| !AuthorizationHelper.isPhoneValid(phone)) {
-            modelAndView.addObject("message", "Phone имеет неверный формат");
+            modelAndView.addObject("messageError", "Phone имеет неверный формат");
             return modelAndView;
         }
 
@@ -84,28 +99,20 @@ public class AuthenticationController {
         System.out.println("phone = " + phone);
 
         if(message==""){
-            User user = new User(login, password, name, age, town, email, phone);
+            User user = new User(login,AuthorizationHelper.md5(password), name, age, town, email, phone);
             boolean isAdded = authenticationService.addUser(user);
-            if(!isAdded) message = "Такой логин или Email уже используется";
+            if(!isAdded) messageError = "Такой логин или Email уже используется";
             else message = "Вы успешно зарегистрированы!";
 
         }
 
-//            User user = new User(login, password, name, age, town, email, phone);
-//            authenticationService.addUser(user);
-//            System.out.println("user = " + user);
-//            boolean isAdded = authenticationService.addUser(user);
-//            if (isAdded) response.sendRedirect("test.jsp");
-//            else response.sendRedirect("login.jsp");
+        modelAndView.addObject("messageError", messageError);
         modelAndView.addObject("message", message);
-
-        //modelAndView.setViewName("signup");
         return modelAndView;
     }
 
-
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ModelAndView authorization(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    public ModelAndView authorization(@ModelAttribute User user,HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         if(request.getParameter("registration")!= null){
             response.sendRedirect("signup.jsp");
         }
@@ -116,10 +123,10 @@ public class AuthenticationController {
 
         boolean isAuthorizated = authenticationService.checkAuthorization(login, AuthorizationHelper.md5(password));
         if (isAuthorizated) {
-           response.sendRedirect("test.jsp");
-
+           modelAndView.addObject("login", login);
+           response.sendRedirect("homePage.jsp");
         }else {
-            modelAndView.addObject("message", "Неверная комбинация логин-пароль");
+            modelAndView.addObject("messageError", "Неверная комбинация логин-пароль");
 
         }
         return modelAndView;

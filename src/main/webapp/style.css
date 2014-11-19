@@ -1,0 +1,28 @@
+
+
+
+h1{
+     font-family: Book Antiqua;
+     color: #5394e3;
+ }
+h2{
+    font-family: Monaco;
+    color: red;
+    font-size: 20px;
+  }
+h3 {
+    font-family: Monaco;
+    color: green;
+    font-size: 20px;
+   }
+
+.demo{
+    background: #5394e3; /* Цвет фона */
+    padding: 3px 20px; /* Поля вокруг текста */
+    font-size: 12px; /* Размер шрифта */
+    font-weight: bold; /* Насыщенность шрифта */
+    color: #FFFFFF; /* Цвет шрифта */
+    text-align: center; /* Надпись на кнопке по центру */
+    border: outset 2px #73C8F0; /* Параметры рамки кнопки */
+    cursor: pointer; /* Изменение вида курсора при наведении*/
+}

@@ -1,7 +1,6 @@
 package domain;
 
 import javax.persistence.*;
-import java.security.Timestamp;
 
 
 /**
@@ -29,23 +28,18 @@ public class Excursion {
     @Column(name = "price")
     private Double price;
 
-    @Column(name = "tour_starts")
-    private Timestamp tour_starts;
+    @Column(name = "duration_tour_minutes")
+    private Integer duration_tour_minutes;
 
-    @Column(name = "tour_end")
-    private Timestamp tour_end;
-
-    public Excursion(String place, String town, Integer max_tourists, Double price, Timestamp tour_starts, Timestamp tour_end) {
+    public Excursion(String place, String town, Integer max_tourists, Double price, Integer duration_tour_minutes) {
         this.place = place;
         this.town = town;
         this.max_tourists = max_tourists;
         this.price = price;
-        this.tour_starts = tour_starts;
-        this.tour_end = tour_end;
+        this.duration_tour_minutes = duration_tour_minutes;
     }
 
-    public Excursion() {
-    }
+    public Excursion(){}
 
     public Integer getExcurs_id() {
         return excurs_id;
@@ -87,33 +81,12 @@ public class Excursion {
         this.price = price;
     }
 
-    public Timestamp getTour_starts() {
-        return tour_starts;
+    public Integer getDuration_tour_minutes() {
+        return duration_tour_minutes;
     }
 
-    public void setTour_starts(Timestamp tour_starts) {
-        this.tour_starts = tour_starts;
-    }
-
-    public Timestamp getTour_end() {
-        return tour_end;
-    }
-
-    public void setTour_end(Timestamp tour_end) {
-        this.tour_end = tour_end;
-    }
-
-    @Override
-    public String toString() {
-        return "Excursion{" +
-                "excurs_id = " + excurs_id +
-                ", place='" + place + '\'' +
-                ", town='" + town + '\'' +
-                ", max_tourists=" + max_tourists +
-                ", price=" + price +
-                ", tour_starts=" + tour_starts +
-                ", tour_end=" + tour_end +
-                '}';
+    public void setDuration_tour_minutes(Integer duration_tour_minutes) {
+        this.duration_tour_minutes = duration_tour_minutes;
     }
 
     @Override
@@ -123,14 +96,13 @@ public class Excursion {
 
         Excursion excursion = (Excursion) o;
 
+        if (duration_tour_minutes != null ? !duration_tour_minutes.equals(excursion.duration_tour_minutes) : excursion.duration_tour_minutes != null)
+            return false;
         if (excurs_id != null ? !excurs_id.equals(excursion.excurs_id) : excursion.excurs_id != null) return false;
         if (max_tourists != null ? !max_tourists.equals(excursion.max_tourists) : excursion.max_tourists != null)
             return false;
         if (place != null ? !place.equals(excursion.place) : excursion.place != null) return false;
         if (price != null ? !price.equals(excursion.price) : excursion.price != null) return false;
-        if (tour_end != null ? !tour_end.equals(excursion.tour_end) : excursion.tour_end != null) return false;
-        if (tour_starts != null ? !tour_starts.equals(excursion.tour_starts) : excursion.tour_starts != null)
-            return false;
         if (town != null ? !town.equals(excursion.town) : excursion.town != null) return false;
 
         return true;
@@ -143,8 +115,19 @@ public class Excursion {
         result = 31 * result + (town != null ? town.hashCode() : 0);
         result = 31 * result + (max_tourists != null ? max_tourists.hashCode() : 0);
         result = 31 * result + (price != null ? price.hashCode() : 0);
-        result = 31 * result + (tour_starts != null ? tour_starts.hashCode() : 0);
-        result = 31 * result + (tour_end != null ? tour_end.hashCode() : 0);
+        result = 31 * result + (duration_tour_minutes != null ? duration_tour_minutes.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Excursion{" +
+                "excurs_id=" + excurs_id +
+                ", place='" + place + '\'' +
+                ", town='" + town + '\'' +
+                ", max_tourists=" + max_tourists +
+                ", price=" + price +
+                ", duration_tour_minutes=" + duration_tour_minutes +
+                '}';
     }
 }

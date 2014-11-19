@@ -1,3 +1,5 @@
+<%@ page import="service.AuthenticationService" %>
+<%@ page import="web.SearchController" %>
 <%--
   Created by IntelliJ IDEA.
   User: Daria
@@ -8,9 +10,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title></title>
+    <style>
+    <%@include file='style.css' %>
+    </style>
 </head>
 <body>
- <h1>Добро пожаловать!</h1>
+<h1>Добро пожаловать: ${login}</h1>
 </body>
 </html>

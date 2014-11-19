@@ -42,8 +42,7 @@ CREATE TABLE Excursion
   town text,
   max_tourists integer,
   price double precision,
-  tour_starts timestamp without time zone,
-  tour_end timestamp without time zone,
+  duration_tour_minutes integer ,
 	CONSTRAINT Excursion_pkey PRIMARY KEY (excurs_id)
 );
 
