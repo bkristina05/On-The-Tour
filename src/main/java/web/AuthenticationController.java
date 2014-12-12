@@ -3,14 +3,10 @@ package web;
 import domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import service.AuthenticationService;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -111,25 +107,49 @@ public class AuthenticationController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ModelAndView authorization(@ModelAttribute User user,HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        if(request.getParameter("registration")!= null){
-            response.sendRedirect("signup.jsp");
-        }
-        ModelAndView modelAndView = new ModelAndView();
-        String login = request.getParameter("login");
-        String password = request.getParameter("password");
-        System.out.println("login = " + login);
+//    @RequestMapping(value = "/login", method = RequestMethod.POST)
+//    public @ResponseBody ModelAndView authorization(@ModelAttribute User user,HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+//        if(request.getParameter("registration")!= null){
+//            response.sendRedirect("signup.jsp");
+//        }
+//        ModelAndView modelAndView = new ModelAndView();
+//        String login = request.getParameter("login");
+//        String password = request.getParameter("password");
+//        System.out.println("login = " + login);
+//
+//        boolean isAuthorizated = authenticationService.checkAuthorization(login, AuthorizationHelper.md5(password));
+//        if (isAuthorizated) {
+//           modelAndView.addObject("login", login);
+//           response.sendRedirect("homePage.jsp");
+//        }else {
+//            modelAndView.addObject("messageError", "Неверная комбинация логин-пароль");
+//
+//        }
+//        return modelAndView;
+//    }
 
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public @ResponseBody Response authorization(@RequestParam("login") String login,@RequestParam("password") String password, HttpServletRequest request,HttpServletResponse response) throws IOException {
+//        ModelAndView modelAndView = new ModelAndView();
+        Response result = new Response();
+        String isLogin = "false";
+        System.out.println("login = " + login);
+        System.out.println("password = " + password);
+//        String result= "";
         boolean isAuthorizated = authenticationService.checkAuthorization(login, AuthorizationHelper.md5(password));
         if (isAuthorizated) {
-           modelAndView.addObject("login", login);
-           response.sendRedirect("homePage.jsp");
-        }else {
-            modelAndView.addObject("messageError", "Неверная комбинация логин-пароль");
-
+            isLogin = "true";
+            result.setText(isLogin);
         }
-        return modelAndView;
+//           modelAndView.addObject("login", login);
+
+        else result.setText(login);
+
+        return result;
+        //String  result="Неверная комбинация логин-пароль";
+//        }
+
+        //return result;
     }
 
 }

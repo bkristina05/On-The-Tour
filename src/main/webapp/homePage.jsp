@@ -1,5 +1,3 @@
-<%@ page import="service.AuthenticationService" %>
-<%@ page import="web.SearchController" %>
 <%--
   Created by IntelliJ IDEA.
   User: Daria
@@ -12,9 +10,23 @@
 <head>
     <style>
     <%@include file='style.css' %>
+    <%@include file='bootstrap.min.css' %>
     </style>
+
 </head>
 <body>
 <h1>Добро пожаловать: ${login}</h1>
+
+<form>
+   <p>Куда едем:</p>
+    <select multiple="multiple">
+        <option>Санкт-Петербург</option>
+        <option>Москва</option>
+        <option>Псков</option>
+        <option>Тула</option>
+    </select>
+    <p>Дата отправления:</p>
+
+</form>
 </body>
 </html>

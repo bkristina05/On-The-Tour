@@ -1,5 +1,11 @@
 
-
+#number_two {
+    width: 50%;
+    height: 400px;
+    background: #ffff00;
+    float: left;
+    text-align: center;
+}
 
 h1{
      font-family: Book Antiqua;
