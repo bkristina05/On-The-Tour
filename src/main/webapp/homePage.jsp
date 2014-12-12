@@ -11,8 +11,16 @@
     <style>
     <%@include file='css/style.css' %>
     <%@include file='css/bootstrap.min.css' %>
+    <%@include file='css/jquery-ui.css' %>
     </style>
+    <script type="text/JavaScript" src="js/jquery-1.10.2.js"></script>
+    <script type="text/JavaScript" src="js/jquery-ui.js"></script>
 
+    <script>
+        $(function() {
+            $( "#datepicker" ).datepicker();
+        });
+    </script>
 </head>
 <body>
 <h1>Добро пожаловать: ${login}</h1>
@@ -26,7 +34,7 @@
         <option>Тула</option>
     </select>
     <p>Дата отправления:</p>
-
+    <input type="text" id="datepicker">
 </form>
 </body>
 </html>
