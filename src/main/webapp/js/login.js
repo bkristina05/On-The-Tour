@@ -1,7 +1,7 @@
 /**
  * Created by Daria on 11.12.2014.
  */
-function checkLoginIs() {
+function loginIs() {
 
     var login = $("#login").val();
     var password =$("#password").val();
