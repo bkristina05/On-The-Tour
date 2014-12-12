@@ -9,8 +9,8 @@
 <html>
 <head>
     <style>
-    <%@include file='style.css' %>
-    <%@include file='bootstrap.min.css' %>
+    <%@include file='css/style.css' %>
+    <%@include file='css/bootstrap.min.css' %>
     </style>
 
 </head>

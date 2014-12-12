@@ -23,5 +23,5 @@ function checkLoginIs() {
 
 function registration(){
     var registration = $("#registration").val();
-    if(registration='Регистрация') location.href = '/signup.jsp';
+    if(registration=='Регистрация') location.href = '/signup.jsp';
 }

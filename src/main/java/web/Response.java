@@ -9,6 +9,6 @@ public class Response {
 	}
 	public void setText(String text) {
 		this.text = text;
-	}
+    }
 
 }
