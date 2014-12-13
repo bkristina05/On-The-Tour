@@ -5,14 +5,13 @@
   Time: 14:23
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
     <style>
     <%@include file='css/style.css' %>
-    <%@include file='css/bootstrap.min.css' %>
     <%@include file='css/jquery-ui.css' %>
     </style>
     <script type="text/JavaScript" src="js/jquery-1.10.2.js"></script>
