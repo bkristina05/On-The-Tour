@@ -1,6 +1,7 @@
 /**
  * Created by Daria on 13.12.2014.
  */
+
 // Создаем новый объект связанных списков
 var syncList1 = new syncList;
 
@@ -11,14 +12,33 @@ syncList1.dataList = {
      от выбранного значения в первом списке */
 
     'Санкт-Петербург':{
-        '1':'Исаакиевский собор',
-        '2':'Петергоф - Петродворец'
+        'Исаакиевский собор':'Исаакиевский собор',
+        'Петергоф - Петродворец':'Петергоф - Петродворец',
+        '1':'1'
     },
 
     'Москва':{
-        '1':'Коломенское'
+        'Коломенское':'Коломенское'
     }
 };
 
 // Включаем синхронизацию связанных списков
 syncList1.sync("select1","select2");
+
+
+function find(){
+    var town = $("#select1").val();
+    var place = $("#select2").val();
+    $.ajax({
+        url : 'searchTours',
+        type: 'GET',
+        dataType: 'json',
+        contentType: 'application/json',
+        mimeType: 'application/json',
+        data : "town=" + town +
+            "&place=" + place,
+        success: function (data) {
+            $("#resultSelect").html(data.text);
+        }
+    });
+}

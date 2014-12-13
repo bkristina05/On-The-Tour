@@ -2328,8 +2328,8 @@
       <column name="seq_excurs_guide" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="excurs_id" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <column name="user_guide_id" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <column name="date_excurs" sqlType="timestamp" precision="29" scale="6" nullable="true" jdbcType="93"/>
       <column name="tourist_quantity" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="date_excurs" sqlType="int8" precision="19" scale="0" nullable="true" jdbcType="-5"/>
       <primary-key name="excurs_guide_pkey" columns="seq_excurs_guide"/>
       <foreign-key name="excurs_guide_excurs_id_fkey" columns="excurs_id" ref-table="excursion" ref-schema="public" ref-catalog="" ref-columns="excurs_id" update-rule="0" delete-rule="0" deferrability="2"/>
       <foreign-key name="excurs_guide_user_id_fkey" columns="user_guide_id" ref-table="users" ref-schema="public" ref-catalog="" ref-columns="user_id" update-rule="0" delete-rule="0" deferrability="2"/>

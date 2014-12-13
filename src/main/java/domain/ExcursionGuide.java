@@ -1,7 +1,6 @@
 package domain;
 
 import javax.persistence.*;
-import java.security.Timestamp;
 
 
 /**
@@ -23,12 +22,12 @@ public class ExcursionGuide {
     private Integer user_guide_id;
 
     @Column(name = "date_excurs")
-    private Timestamp date_excurs;
+    private Long date_excurs;
 
     @Column(name = "tourist_quantity")
     private Integer tourist_quantity;
 
-    public ExcursionGuide(Integer excurs_id, Integer user_guide_id, Timestamp date_excurs, Integer tourist_quantity) {
+    public ExcursionGuide(Integer excurs_id, Integer user_guide_id, Long date_excurs, Integer tourist_quantity) {
         this.excurs_id = excurs_id;
         this.user_guide_id = user_guide_id;
         this.date_excurs = date_excurs;
@@ -54,11 +53,11 @@ public class ExcursionGuide {
         this.excurs_id = excurs_id;
     }
 
-    public Timestamp getDate_excurs() {
+    public Long getDate_excurs() {
         return date_excurs;
     }
 
-    public void setDate_excurs(Timestamp date_excurs) {
+    public void setDate_excurs(Long date_excurs) {
         this.date_excurs = date_excurs;
     }
 

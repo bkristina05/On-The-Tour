@@ -51,7 +51,7 @@ CREATE TABLE Excurs_Guide
  seq_excurs_guide integer NOT NULL,
 excurs_id integer,
 user_guide_id integer,
-date_excurs timestamp without time zone,
+date_excurs bigint,
 tourist_quantity integer,
 CONSTRAINT Excurs_Guide_pkey PRIMARY KEY (seq_excurs_guide),
 CONSTRAINT Excurs_Guide_excurs_id_fkey FOREIGN KEY (excurs_id)
