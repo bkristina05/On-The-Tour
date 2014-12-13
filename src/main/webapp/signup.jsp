@@ -26,7 +26,7 @@
         <tr><td>Email</td><td> <input type='text' id="email" name="email"/></td></tr>
         <tr><td>Телефон</td><td> <input type='text' id="phone"  name="phone"/></td></tr>
         <tr><td colspan="2"><input type="button" name="signup" value="Зарегистрироваться" onclick="signup()" class="demo"/></td></tr>
-        <tr><td colspan="2"><input type="button" id="enter" value="Войти" onclick="enter()" class="demo"></td></tr>
+        <tr><td colspan="2"><input type="button" id="enter" value="Войти" onclick="enter()" class="demo" /></td></tr>
     </table>
 </body>
 </html>

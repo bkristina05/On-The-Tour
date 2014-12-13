@@ -15,7 +15,7 @@
     </style>
     <script type="text/JavaScript" src="js/jquery-1.10.2.js"></script>
     <script type="text/JavaScript" src="js/jquery-ui.js"></script>
-
+    <script type="text/JavaScript" src="js/changeFormSelect.js"></script>
     <script>
         $(function() {
             $( "#datepicker" ).datepicker();
@@ -25,16 +25,21 @@
 <body>
 <h1>Добро пожаловать: ${login}</h1>
 
-<form>
-   <p>Куда едем:</p>
-    <select multiple="multiple">
-        <option>Санкт-Петербург</option>
-        <option>Москва</option>
-        <option>Псков</option>
-        <option>Тула</option>
-    </select>
-    <p>Дата отправления:</p>
-    <input type="text" id="datepicker">
-</form>
+    <table>
+    <tr><td>Куда едем:</td>
+    <td><select name="select1" onchange="change(this)">
+        <option value="Санкт-Петербург">Санкт-Петербург</option>
+        <option value="Москва">Москва</option>
+        <option value="Псков">Псков</option>
+        <option value="Тула">Тула</option>
+    </select></td></tr>
+    <tr><td><select name="select2" id="select2" style="display:none">
+            <option value="100">100 часов</option>
+            <option value="200">200 часов</option>
+    </select></td><tr>
+    <tr><td>Дата отправления:</td>
+    <td><input type="text" id="datepicker" /></td></tr>
+    </table>
+
 </body>
 </html>

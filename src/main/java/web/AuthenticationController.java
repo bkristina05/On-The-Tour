@@ -4,8 +4,10 @@ import domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import service.AuthenticationService;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -103,26 +105,27 @@ public class AuthenticationController {
     }
 
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public @ResponseBody Response authorization(@RequestParam("login") String login,@RequestParam("password") String password, HttpServletRequest request,HttpServletResponse response) throws IOException {
-//        ModelAndView modelAndView = new ModelAndView();
-        Response result = new Response();
-        String isLogin = "false";
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+     public ModelAndView authorization(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+
+        String login = request.getParameter("login");
+        String password = request.getParameter("password");
         System.out.println("login = " + login);
-        System.out.println("password = " + password);
-//        String result= "";
+        ModelAndView modelAndView = new ModelAndView();
+
+        if (request.getParameter("registration") != null) {
+            response.sendRedirect("signup.jsp");
+        }
+
         boolean isAuthorizated = authenticationService.checkAuthorization(login, AuthorizationHelper.md5(password));
         if (isAuthorizated) {
-            isLogin = "true";
-            result.setText(isLogin);
+            modelAndView.addObject("login", login);
+            response.sendRedirect("homePage.jsp");
+        } else {
+            modelAndView.addObject("messageError", "Неверная комбинация логин-пароль");
         }
-//           modelAndView.addObject("login", login);
-        else result.setText("Неверная комбинация логин-пароль");
 
-        return result;
+        return modelAndView;
+        }
+
     }
-
-}
-
-
-
