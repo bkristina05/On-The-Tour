@@ -42,8 +42,9 @@ CREATE TABLE Excursion
   town text,
   max_tourists integer,
   price double precision,
-  duration_tour_minutes integer ,
-	CONSTRAINT Excursion_pkey PRIMARY KEY (excurs_id)
+  duration_tour_minutes integer,
+  description text,
+  CONSTRAINT excursion_pkey PRIMARY KEY (excurs_id)
 );
 
 CREATE TABLE Excurs_Guide
