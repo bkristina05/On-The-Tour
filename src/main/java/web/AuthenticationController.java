@@ -48,61 +48,65 @@ public class AuthenticationController {
 
 
         if (ageString == null || ageString.trim().isEmpty()|| !AuthorizationHelper.isAgeValid(Integer.valueOf(ageString.trim()))) {
-            result.setText("Поле Возраст имеет неверный формат. Минимальный (максимальный) возраст для регистрации на сайте 15 (90)");
+            result.setText("<h2>Поле Возраст имеет неверный формат. Минимальный (максимальный) возраст для регистрации на сайте 15 (90)</h2>");
             return result;
         }
 
            Integer age = Integer.valueOf(ageString);
 
         if (name == null || name.trim().isEmpty()) {
-            result.setText("Поле ФИО имеет неверный формат");
+            result.setText("</h2>Поле ФИО имеет неверный формат</h2>");
             return result;
         }
 
         if (login == null || login.trim().isEmpty()|| !AuthorizationHelper.isLoginValid(login)) {
-            result.setText("Поле Логин имеет неверный формат");
+            result.setText("<h2>Поле Логин имеет неверный формат</h2>");
             return result;
         }
 
         if (password == null || password.trim().isEmpty()) {
-            result.setText("Поле Пароль имеет неверный формат");
+            result.setText("<h2>Поле Пароль имеет неверный формат</h2>");
             return result;
         }
 
         if (confirmationPassword == null || confirmationPassword.trim().isEmpty()){
-            result.setText("Поле Подтверждение пароля имеет неверный формат");
+            result.setText("<h2>Поле Подтверждение пароля имеет неверный формат</h2>");
             return result;
         }
 
         if(!confirmationPassword.equals(password)){
-            result.setText("Пароли не совпадают!");
+            result.setText("<h2>Пароли не совпадают!</h2>");
             return result;
         }
 
         if (town == null || town.trim().isEmpty()) {
-             result.setText("Поле Город имеет неверный формат");
+             result.setText("<h2>Поле Город имеет неверный формат</h2>");
              return result;
         }
 
         if (email == null || email.trim().isEmpty()|| !AuthorizationHelper.isEmailValid(email)) {
-            result.setText("Поле Email имеет неверный формат");
+            result.setText("<h2>Поле Email имеет неверный формат</h2>");
             return result;
         }
 
         if (phone == null || phone.trim().isEmpty()|| !AuthorizationHelper.isPhoneValid(phone)) {
-            result.setText("Phone имеет неверный формат");
+            result.setText("<h2>Phone имеет неверный формат</h2>");
             return result;
         }
 
+        if(!authenticationService.checkForTheExistenceLogin(login)){
+            result.setText("<h2>Логин уже кем-то занят</h2>");
+            return result;
+        }
+        if(!authenticationService.checkForTheExistenceEmail(email)){
+            result.setText("<h2>Такой Email уже используется</h2>");
+            return result;
+        }
 
-
-        if(result.getText()==""){
             User user = new User(login,AuthorizationHelper.md5(password), name, age, town, email, phone);
             boolean isAdded = authenticationService.addUser(user);
-            if(!isAdded)  result.setText("Такой логин или Email уже используется");
-            else  result.setText("Вы успешно зарегистрированы!");
-
-        }
+            if(!isAdded)  result.setText("<h2>Cбой при записи в БД</h2>");
+            else  result.setText("<h3>Вы успешно зарегистрированы!</h3>");
 
         return result;
     }
