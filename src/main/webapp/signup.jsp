@@ -15,7 +15,7 @@
 </head>
 <body>
     <table>
-        <tr><h2 id="resultSignup"></h2></tr>
+        <tr><p id="resultSignup"><p></tr>
         <tr><h1>Регистрация</h1></tr>
         <tr><td>ФИО</td><td> <input type='text' id="name" name="name"/></td></tr>
         <tr><td>Логин</td><td> <input type='text' id="login" maxlength='16' name="login"/></td></tr>

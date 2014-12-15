@@ -2,7 +2,9 @@ package service;
 
 import domain.User;
 import domain.UserType;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
+import org.hibernate.classic.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -46,7 +48,27 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         return false;
     }
 
+    @Override
+    public boolean checkForTheExistenceLogin(String login) {
+        Session session = sessionFactory.openSession();
+        Query sqlQuery = session.createSQLQuery(
+                "SELECT * from users where login=:login"
+        );
+        List<Object> rows = sqlQuery.setParameter("login", login).list();
+        if (rows.isEmpty()) return true;
+        else return false;
+    }
 
+    @Override
+    public boolean checkForTheExistenceEmail(String email) {
+        Session session = sessionFactory.openSession();
+        Query sqlQuery = session.createSQLQuery(
+                "SELECT * from users where email=:email"
+        );
+        List<Object> rows = sqlQuery.setParameter("email", email).list();
+        if (rows.isEmpty()) return true;
+        else return false;
+    }
 
 
 }
