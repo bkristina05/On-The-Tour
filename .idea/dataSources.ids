@@ -2350,6 +2350,7 @@
       <column name="max_tourists" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <column name="price" sqlType="float8" precision="17" scale="17" nullable="true" jdbcType="8"/>
       <column name="duration_tour_minutes" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="description" sqlType="text" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
       <primary-key name="excursion_pkey" columns="excurs_id"/>
       <exported-key name="excurs_guide_excurs_id_fkey" table="excurs_guide" schema="public" catalog="excursions" columns="excurs_id"/>
       <exported-key name="rating_excurs_id_fkey" table="rating" schema="public" catalog="excursions" columns="excurs_id"/>
