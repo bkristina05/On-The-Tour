@@ -1,5 +1,7 @@
 package domain;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 
 /**
@@ -9,7 +11,9 @@ import javax.persistence.*;
 @Entity
 @Table(name = "Users")
 public class User {
-    @Id    @Column(name= "user_id")    @GeneratedValue()
+    @Id    @Column(name= "user_id")
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment",strategy = "increment")
     private Integer user_id;
 
     @Column(name= "login")
