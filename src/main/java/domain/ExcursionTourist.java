@@ -15,17 +15,26 @@ public class ExcursionTourist {
     private Integer sequence_id;
 
     @Column(name = "user_id")
-    private String user_id;
+    private Integer user_id;
 
     @Column(name = "excurs_guide_seq")
-    private String excurs_guide_seq;
+    private Integer excurs_guide_seq;
 
-    public ExcursionTourist(String user_id, String excurs_guide_seq) {
+
+    public ExcursionTourist(Integer user_id, Integer excurs_guide_seq) {
         this.user_id = user_id;
         this.excurs_guide_seq = excurs_guide_seq;
     }
 
     public ExcursionTourist() {
+    }
+
+    public Integer getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(Integer user_id) {
+        this.user_id = user_id;
     }
 
     public Integer getSequence_id() {
@@ -36,19 +45,11 @@ public class ExcursionTourist {
         this.sequence_id = sequence_id;
     }
 
-    public String getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(String user_id) {
-        this.user_id = user_id;
-    }
-
-    public String getExcurs_guide_seq() {
+    public Integer getExcurs_guide_seq() {
         return excurs_guide_seq;
     }
 
-    public void setExcurs_guide_seq(String excurs_guide_seq) {
+    public void setExcurs_guide_seq(Integer excurs_guide_seq) {
         this.excurs_guide_seq = excurs_guide_seq;
     }
 
@@ -77,10 +78,10 @@ public class ExcursionTourist {
 
     @Override
     public String toString() {
-        return "bd.ExcursionTourist{" +
+        return "ExcursionTourist{" +
                 "sequence_id=" + sequence_id +
-                ", user_id='" + user_id + '\'' +
-                ", excurs_guide_seq='" + excurs_guide_seq + '\'' +
+                ", user_id=" + user_id +
+                ", excurs_guide_seq=" + excurs_guide_seq +
                 '}';
     }
 }

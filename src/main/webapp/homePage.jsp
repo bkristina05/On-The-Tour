@@ -6,7 +6,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page import="java.util.*" %>
-<%@ page import="transferObjects.Excursion" %>
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -28,12 +27,13 @@
 
 
             out.println("<tr><td><select  name=\"townsSelect\">\n");
-            for (String town : towns)
-                out.println("   <option  value=\""+town+"\">"+town+"</option>\n");
+            for (String town : towns) out.println("   <option  value=\""+town+"\">"+town+"</option>\n");
+
             out.println("</select></td></tr>");
 
         %>
-        <input type="hidden" name="login" value="${login}">
+        <input type="hidden" name="login" value="${login}" />
+
     <tr><td colspan="2"><input type="submit" id="select" value="Выбрать" class="demo" /></td></tr>
     </table>
 </form>

@@ -10,4 +10,5 @@ import java.util.List;
 public interface SearchService {
     public List<String> getTowns();
     public List<Excursion> getExcursions(String town);
+    public Integer getReserve(Integer idExcursion,String login,Integer numberPersons);
 }

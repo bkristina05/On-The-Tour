@@ -1,5 +1,6 @@
 package service;
 
+import domain.ExcursionTourist;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.classic.Session;
@@ -10,7 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 import transferObjects.Excursion;
 
 import java.math.BigInteger;
-import java.util.*;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by Daria on 14.12.2014.
@@ -47,13 +49,16 @@ public class SearchServiceImpl implements SearchService {
 
         Session session = sessionFactory.openSession();
         Query sqlQuery = session.createSQLQuery(
-                                "SELECT " +
-                                "  e.place, " +
-                                "  date_excurs, " +
-                                "  (e.max_tourists - eg.tourist_quantity) AS available_quantity " +
-                                "FROM Excursion e " +
-                                "  JOIN Excurs_Guide eg ON e.excurs_id = eg.excurs_id " +
-                                "WHERE e.town=:town"
+                                        "SELECT " +
+                                        "  e.place, " +
+                                        "  date_excurs, " +
+                                        "  (e.max_tourists - eg.tourist_quantity) AS available_quantity, " +
+                                        "  e.duration_tour_minutes, " +
+                                        "  eg.seq_excurs_guide, " +
+                                        "  e.price "+
+                                        "FROM Excursion e " +
+                                        "  JOIN Excurs_Guide eg ON e.excurs_id = eg.excurs_id " +
+                                        "WHERE e.town=:town"
         );
         List<Excursion> excursions = new LinkedList<>();
 
@@ -67,13 +72,50 @@ public class SearchServiceImpl implements SearchService {
 
             Integer availableQuantity = (Integer) column[2];
 
-            excursions.add(new Excursion(place, availableQuantity, dateTime));
+            Integer durationInMinute = (Integer) column[3];
+
+            Integer idExcursion = (Integer) column[4];
+
+            Double price = (Double) column[5];
+
+            excursions.add(new Excursion(town,place,idExcursion,availableQuantity,dateTime,durationInMinute,price));
         }
 
         return excursions;
     }
 
+    @Override
+    @Transactional
+    public Integer getReserve(Integer idExcursion,String login,Integer numberPersons) {
+        Session session = sessionFactory.openSession();
+        Query sqlQuery = session.createSQLQuery(
+                "SELECT user_id from users where login=:login"
+        );
+        List<Object> rows = sqlQuery.setParameter("login",login).list();
+        if(rows.isEmpty()) return -1;
+        else{
 
+            Integer userId = (Integer) rows.get(0);
+            System.out.println("userId = " + userId);
+
+            ExcursionTourist excursionTourist = new ExcursionTourist(userId,idExcursion);
+
+            sessionFactory.getCurrentSession().save(excursionTourist);
+            Integer sequence_id = excursionTourist.getSequence_id();
+
+            System.out.println("sequence_id = " + sequence_id);
+
+            Session session2 = sessionFactory.getCurrentSession();
+            session2.createSQLQuery("UPDATE excurs_guide " +
+                                    "SET tourist_quantity=(tourist_quantity + :numberPersons) " +
+                                    "WHERE seq_excurs_guide=:idExcursion").
+                    setParameter("numberPersons",numberPersons).
+                    setParameter("idExcursion",idExcursion).
+                    executeUpdate();
+            return sequence_id;
+        }
+
+    }
 
 
 }

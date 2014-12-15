@@ -40,13 +40,12 @@ public class AuthenticationController {
         System.out.println("name = " + name);
         System.out.println("login = " + login);
         System.out.println("password = " + password);
-//        System.out.println("age = " + age);
         System.out.println("town = " + town);
         System.out.println("email = " + email);
         System.out.println("phone = " + phone);
 
         Response result = new Response();
-        String text = "";
+
 
         if (ageString == null || ageString.trim().isEmpty()|| !AuthorizationHelper.isAgeValid(Integer.valueOf(ageString.trim()))) {
             result.setText("Поле Возраст имеет неверный формат. Минимальный (максимальный) возраст для регистрации на сайте 15 (90)");
