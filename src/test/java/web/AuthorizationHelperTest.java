@@ -18,7 +18,7 @@ public class AuthorizationHelperTest {
 
     @Test
     public void testIsPhoneValid2() throws Exception {
-        boolean phoneValid = AuthorizationHelper.isPhoneValid("8(921)927-61-20");
+        boolean phoneValid = AuthorizationHelper.isPhoneValid("9219276120");
         Assert.assertEquals(true,phoneValid);
     }
 
