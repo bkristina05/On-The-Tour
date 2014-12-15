@@ -6,11 +6,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import service.AuthenticationService;
+import service.SearchService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 @Controller
 @SessionAttributes("login")
@@ -18,6 +20,8 @@ public class AuthenticationController {
 
 	@Autowired
 	private AuthenticationService authenticationService;
+    @Autowired
+    private SearchService searchService;
 
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public @ResponseBody Response registration(
@@ -113,16 +117,18 @@ public class AuthenticationController {
         System.out.println("login = " + login);
         ModelAndView modelAndView = new ModelAndView();
 
-        if (request.getParameter("registration") != null) {
-            response.sendRedirect("signup.jsp");
-        }
+        if (request.getParameter("registration") != null) response.sendRedirect("signup.jsp");
 
         boolean isAuthorizated = authenticationService.checkAuthorization(login, AuthorizationHelper.md5(password));
-        if (isAuthorizated) {
+        if (!isAuthorizated) modelAndView.addObject("messageError", "Неверная комбинация логин-пароль");
+        else {
+            List<String> towns = searchService.getTowns();
+            System.out.println("towns = " + towns);
+
+            request.setAttribute("towns", towns);
+
             modelAndView.addObject("login", login);
-            response.sendRedirect("homePage.jsp");
-        } else {
-            modelAndView.addObject("messageError", "Неверная комбинация логин-пароль");
+            modelAndView.setViewName("homePage");
         }
 
         return modelAndView;
