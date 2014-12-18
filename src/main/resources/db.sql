@@ -45,7 +45,7 @@ CREATE TABLE excursion
   town text,
   max_tourists integer,
   price double precision,
-  duration_tour_minutes integer,
+  duration_tour integer,
   description text,
   CONSTRAINT excursion_pkey PRIMARY KEY (excurs_id)
 );
@@ -142,3 +142,14 @@ $$ LANGUAGE plpgsql;
 CREATE TRIGGER log_trigger
 AFTER INSERT OR UPDATE OR DELETE ON excursion
 FOR EACH ROW EXECUTE PROCEDURE add_to_log();
+
+CREATE SEQUENCE hibernate_sequence
+INCREMENT 1
+MINVALUE 1
+MAXVALUE 9223372036854775807
+START 1
+CACHE 5;
+
+INSERT INTO public.type_name (type_id, type_name) VALUES (1, 'admin');
+INSERT INTO public.type_name (type_id, type_name) VALUES (2, 'guide');
+INSERT INTO public.type_name (type_id, type_name) VALUES (3, 'user');
