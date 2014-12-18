@@ -22,7 +22,7 @@ public class AuthorizationHelper {
     }
 
     public static boolean isPhoneValid(String phone){
-        final Pattern pattern = Pattern.compile("^[0-9]{10,11}+$");
+        final Pattern pattern = Pattern.compile("\\d{5,10}");
         final Matcher matcher = pattern.matcher(phone);
         if (matcher.find()) {
             System.out.println("Phone подходит");
