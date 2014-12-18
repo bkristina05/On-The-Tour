@@ -27,7 +27,6 @@ public class UpdateController {
             HttpServletRequest request, HttpServletResponse response
     ) throws IOException {
 
-
         Response result = new Response();
 
         System.out.println("login = " + login);

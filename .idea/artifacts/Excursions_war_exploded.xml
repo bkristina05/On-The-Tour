@@ -7,6 +7,7 @@
           <element id="module-output" name="Excursions" />
         </element>
         <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: joda-time:joda-time:2.6" />
           <element id="library" level="project" name="Maven: org.springframework:spring-context:3.0.5.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-aop:3.0.5.RELEASE" />
           <element id="library" level="project" name="Maven: aopalliance:aopalliance:1.0" />
@@ -20,7 +21,7 @@
           <element id="library" level="project" name="Maven: org.springframework.security:spring-security-web:3.0.5.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.security:spring-security-core:3.0.5.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-tx:3.0.5.RELEASE" />
-          <element id="library" level="project" name="Maven: org.aspectj:aspectjrt:1.8.4" />
+          <element id="library" level="project" name="Maven: org.aspectj:aspectjrt:1.6.8" />
           <element id="library" level="project" name="Maven: org.aspectj:aspectjweaver:1.6.8" />
           <element id="library" level="project" name="Maven: org.springframework.security:spring-security-config:3.0.5.RELEASE" />
           <element id="library" level="project" name="Maven: javax.persistence:persistence-api:1.0" />

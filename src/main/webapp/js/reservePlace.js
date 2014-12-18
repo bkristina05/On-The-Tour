@@ -14,8 +14,7 @@ function reservePlace() {
         dataType: 'json',
         contentType: 'application/json',
         mimeType: 'application/json',
-        data :
-            "login=" + login +
+        data : "login=" + login +
             "&idExcursion=" + idExcursion +
             "&numberPersons=" + numberPersons,
         success: function (data) {

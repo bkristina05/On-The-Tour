@@ -8,7 +8,6 @@ import org.springframework.web.servlet.ModelAndView;
 import service.AuthenticationService;
 import service.GuideService;
 import service.SearchService;
-import service.GuideServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

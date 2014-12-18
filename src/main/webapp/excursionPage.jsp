@@ -46,5 +46,6 @@
 
 %>
 <input type="hidden" id="login" value="${login}" />
+<input type="hidden" id="login2" value="${login}" />
 </body>
 </html>
