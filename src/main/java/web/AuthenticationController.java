@@ -137,6 +137,12 @@ public class AuthenticationController {
                 modelAndView.setViewName("guide_page");
                 return  modelAndView;
             }
+            if(typeName.equals("admin")){
+                modelAndView.addObject("user_id",user_id);
+                modelAndView.addObject("login",login);
+                modelAndView.setViewName("admin_page");
+                return  modelAndView;
+            }
             List<String> towns = searchService.getTowns();
             System.out.println("towns = " + towns);
 
