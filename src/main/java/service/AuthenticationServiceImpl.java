@@ -34,7 +34,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     public boolean checkAuthorization(String login, String password) {
 
         List<User> list = sessionFactory.getCurrentSession().
-                createSQLQuery("select * from Users where login = '" + login + "' and password = '" + password + "'").
+                createSQLQuery("select * from users where login = '" + login + "' and password = '" + password + "'").
                 addEntity(User.class).list();
         if (list == null || list.isEmpty()) return false;
 

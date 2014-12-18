@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="3831301161">
-    <data-source source="LOCAL" name="Excursions" uuid="44015a20-2b41-4236-a59c-5529b429dda4">
+  <component name="DataSourceManagerImpl" format="xml" hash="1800236115">
+    <data-source source="LOCAL" name="PostgreSQL - excursions@localhost" uuid="2b4da529-1daa-4fc0-a84d-23db82d80b4d">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://localhost:5432/excursions</jdbc-url>
-      <user-name>postgres</user-name>
-      <user-password>df9bdf98df99</user-password>
+      <user-name>user_db1</user-name>
+      <user-password>dfdbdfdadfdddfc5dfcfdfc3dfd8dfdfdfdedfd3</user-password>
+      <schema-pattern>excursions.pg_catalog excursions.public</schema-pattern>
+      <default-schemas>excursions.pg_catalog excursions.public</default-schemas>
       <libraries />
     </data-source>
   </component>

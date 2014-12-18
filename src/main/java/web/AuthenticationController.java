@@ -6,7 +6,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import service.AuthenticationService;
+import service.GuideService;
 import service.SearchService;
+import service.GuideServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +24,8 @@ public class AuthenticationController {
 	private AuthenticationService authenticationService;
     @Autowired
     private SearchService searchService;
+    @Autowired
+    private GuideService guideService;
 
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public @ResponseBody Response registration(
@@ -125,6 +129,14 @@ public class AuthenticationController {
         boolean isAuthorizated = authenticationService.checkAuthorization(login, AuthorizationHelper.md5(password));
         if (!isAuthorizated) modelAndView.addObject("messageError", "Неверная комбинация логин-пароль");
         else {
+            int user_id= guideService.getIdUser(login);
+            String typeName=guideService.getTypeName(user_id);
+            if(typeName.equals("guide")){
+                modelAndView.addObject("user_id",user_id);
+                modelAndView.addObject("login",login);
+                modelAndView.setViewName("guide_page");
+                return  modelAndView;
+            }
             List<String> towns = searchService.getTowns();
             System.out.println("towns = " + towns);
 
