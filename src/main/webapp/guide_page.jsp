@@ -1,4 +1,7 @@
-<%@ page import="java.util.Date" %>
+<%@ page import="domain.User" %>
+<%@ page import="domain.ExcursionGuide" %>
+<%@ page import="domain.Excursion" %>
+<%@ page import="java.util.*" %>
 <%--
   Created by IntelliJ IDEA.
   User: Igor
@@ -13,23 +16,63 @@
     <style> <%@include file='css/style.css' %> </style>
 </head>
 <body>
-<form method="POST" action="/guide_page">${error}
-    <table>
-        <tr><h1>Список ваших экскурсий</h1></tr>
+<div align="left"><h1>Здравствуйте, ${login}</h1></div>
+<form method="POST" action="/guide_page">
         <input type='hidden' name="user_id" value="${user_id}"/>
         <input type="hidden" name="login" value="${login}" />
+    <table>
         <tr><td colspan="2" align="right"><input type="submit" name="goOnTour" value="Записаться на тур"  class="demo" /></td></tr>
         <tr><td colspan="2" align="right"><input type="submit" name="getExcursions" value="Показать экскурсии"  class="demo" /></td>
-            <td><select name="select_excursion">
-                <c:forEach var="excursion" items="${Excursions}">
-                    <option value="${excursion.getKey().seq_excurs_guide}"> <c:out value="${excursion.getValue().place}, ${excursion.getValue().town}, ${excursion.getKey().date_excurs}"/>
-                    </option>
-                </c:forEach>
-            </select></td></tr>
+        <td><%
+                Map<ExcursionGuide, Excursion> setExcursions=(HashMap<ExcursionGuide, Excursion>)request.getAttribute("Excursions");
+                Set<User> setTourists=(HashSet<User>)request.getAttribute("setTourists");
+                Integer id=(Integer)request.getAttribute("id_excursion");
+                out.println("<select name=\"select_excursion\">");
+                if(setExcursions!=null)
+                for (Map.Entry<ExcursionGuide, Excursion> exc: setExcursions.entrySet()){
+                    Date date=new Date(exc.getKey().getDate_excurs());
+                    GregorianCalendar calendar=new GregorianCalendar();
+                    calendar.setTime(date);
+                    Formatter f=new Formatter();
+		            String stringDate=f.format(", %tR %tD", date,date).toString();
+                   out.print("<option value=\""+exc.getKey().getSeq_excurs_guide()+"\">"+exc.getValue().getPlace()+", "+exc.getValue().getTown()+  stringDate+"</option>\n");
+
+                }
+            %>
+        </td></tr>
         <tr><td colspan="2" align="right"><input type="submit" name="getTourists" value="Показать туристов"  class="demo" /></td></tr>
-        <c:forEach var="tourist" items="${setTourists}">
-        <tr><td><c:out value="${tourist.name}, ${tourist.email}, ${tourist.phone}"/></td></tr>
-        </c:forEach>
+        </table>
+        <table border="2">
+        <%
+            if(setTourists!=null)
+                if(!setTourists.isEmpty()){
+                    if(id!=null)
+                    for (Map.Entry<ExcursionGuide, Excursion> exc: setExcursions.entrySet()){
+                        Date date=new Date(exc.getKey().getDate_excurs());
+                        GregorianCalendar calendar=new GregorianCalendar();
+                        calendar.setTime(date);
+                        Formatter f=new Formatter();
+                        String stringDate=f.format("%tR %tD", date,date).toString();
+                        if(id.equals(exc.getKey().getSeq_excurs_guide()))out.println("<tr>Заявки на экскурсию \""+exc.getValue().getPlace()+", "+exc.getValue().getTown()+"\" на "+stringDate+"</tr>");
+                    }
+
+
+                    out.println("<tr><td>Имя туриста</td><td>Номер телефона</td><td>адрес электронной почты</td></tr>");
+                    for(User tourist:setTourists){
+                        out.println("<tr><td>"+tourist.getName()+"</td><td>"+tourist.getPhone()+"</td><td>"+tourist.getEmail()+"</td></tr>");
+                    }
+                }else {
+                    if(id!=null)
+                        for (Map.Entry<ExcursionGuide, Excursion> exc: setExcursions.entrySet()){
+                            Date date=new Date(exc.getKey().getDate_excurs());
+                            GregorianCalendar calendar=new GregorianCalendar();
+                            calendar.setTime(date);
+                            Formatter f=new Formatter();
+                            String stringDate=f.format("%tR %tD", date,date).toString();
+                            if(id.equals(exc.getKey().getSeq_excurs_guide()))out.println("<tr>Заявок на экскурсию \""+exc.getValue().getPlace()+", "+exc.getValue().getTown()+"\" на "+stringDate+" нет</tr>");
+                        }
+                }
+        %>
     </table>
 </form>
 

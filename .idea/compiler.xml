@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="AjcSettings">
-    <option name="ajcPath" value="$PROJECT_DIR$/../../../Daria/.m2/repository/org/aspectj/aspectjtools/1.6.5/aspectjtools-1.6.5.jar" />
+    <option name="ajcPath" value="$USER_HOME$/Daria/.m2/repository/org/aspectj/aspectjtools/1.6.5/aspectjtools-1.6.5.jar" />
     <option name="explicitAspectPath" value="true" />
     <option name="delegateToJavac" value="true" />
   </component>
