@@ -2,7 +2,6 @@
   <artifact type="exploded-war" name="Excursions:war exploded">
     <output-path>$PROJECT_DIR$/target/contactmanager-1.0.0-BUILD-SNAPSHOT</output-path>
     <root id="root">
-      <element id="javaee-facet-resources" facet="Excursions/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="Excursions" />
@@ -51,6 +50,7 @@
           <element id="library" level="project" name="Maven: postgresql:postgresql:9.1-901-1.jdbc4" />
         </element>
       </element>
+      <element id="javaee-facet-resources" facet="Excursions/web/Web" />
     </root>
   </artifact>
 </component>

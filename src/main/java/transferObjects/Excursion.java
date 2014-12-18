@@ -13,15 +13,17 @@ public class Excursion {
     private DateTime date;
     private Integer duration;
     private Double price;
+    private String description;
 
-    public Excursion(String town, String place, Integer idExcursion, Integer available, DateTime date, Integer duration, Double price) {
+    public Excursion(Integer idExcursion, String town, String place, Integer available, DateTime date, Integer duration, Double price, String description) {
+        this.idExcursion = idExcursion;
         this.town = town;
         this.place = place;
-        this.idExcursion = idExcursion;
         this.available = available;
         this.date = date;
         this.duration = duration;
         this.price = price;
+        this.description = description;
     }
 
     public Integer getIdExcursion() {
@@ -38,14 +40,6 @@ public class Excursion {
 
     public void setTown(String town) {
         this.town = town;
-    }
-
-    public String getPlace() {
-        return place;
-    }
-
-    public void setPlace(String place) {
-        this.place = place;
     }
 
     public Integer getAvailable() {
@@ -80,6 +74,22 @@ public class Excursion {
         this.price = price;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getPlace() {
+        return place;
+    }
+
+    public void setPlace(String place) {
+        this.place = place;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -89,6 +99,8 @@ public class Excursion {
 
         if (available != null ? !available.equals(excursion.available) : excursion.available != null) return false;
         if (date != null ? !date.equals(excursion.date) : excursion.date != null) return false;
+        if (description != null ? !description.equals(excursion.description) : excursion.description != null)
+            return false;
         if (duration != null ? !duration.equals(excursion.duration) : excursion.duration != null) return false;
         if (idExcursion != null ? !idExcursion.equals(excursion.idExcursion) : excursion.idExcursion != null)
             return false;
@@ -108,6 +120,7 @@ public class Excursion {
         result = 31 * result + (date != null ? date.hashCode() : 0);
         result = 31 * result + (duration != null ? duration.hashCode() : 0);
         result = 31 * result + (price != null ? price.hashCode() : 0);
+        result = 31 * result + (description != null ? description.hashCode() : 0);
         return result;
     }
 
@@ -121,6 +134,7 @@ public class Excursion {
                 ", date=" + date +
                 ", duration=" + duration +
                 ", price=" + price +
+                ", description='" + description + '\'' +
                 '}';
     }
 }

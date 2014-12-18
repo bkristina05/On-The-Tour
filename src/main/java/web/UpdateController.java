@@ -23,10 +23,6 @@ public class UpdateController {
     public @ResponseBody Response reserve(
             @RequestParam("login") String login,
             @RequestParam("idExcursion") Integer idExcursion,
-            @RequestParam("town") String town,
-            @RequestParam("place") String place,
-            @RequestParam("availablePlaces") Integer availablePlaces,
-            @RequestParam("duration") Double duration,
             @RequestParam("numberPersons") Integer numberPersons,
             HttpServletRequest request, HttpServletResponse response
     ) throws IOException {
@@ -36,10 +32,6 @@ public class UpdateController {
 
         System.out.println("login = " + login);
         System.out.println("idExcursion = " + idExcursion);
-        System.out.println("town = " + town);
-        System.out.println("place = " + place);
-        System.out.println("availablePlaces = " + availablePlaces);
-        System.out.println("duration = " + duration);
         System.out.println("numberPersons = " + numberPersons);
         Integer isReserve = searchService.getReserve(idExcursion,login,numberPersons);
         if(isReserve==-1){

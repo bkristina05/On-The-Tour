@@ -1,11 +1,5 @@
 
-#number_two {
-    width: 50%;
-    height: 400px;
-    background: #ffff00;
-    float: left;
-    text-align: center;
-}
+
 
 h1{
      font-family: Book Antiqua;
@@ -22,6 +16,8 @@ h3 {
     font-size: 20px;
    }
 
+
+
 .demo{
     background: #5394e3; /* Цвет фона */
     padding: 3px 20px; /* Поля вокруг текста */
@@ -33,5 +29,38 @@ h3 {
     cursor: pointer; /* Изменение вида курсора при наведении*/
 }
 
+body {
+    background: #f3f2f3;
+    color: #000000;
+    font-family: Trebuchet MS, Arial, Times New Roman;
+    font-size: 12px;
+}
+#container {
+    background: #FFFFFF;
+    margin: 30px auto;
+    width: 900px;
+    height: 1000px;
+}
+#header {
+    background: #73C8F0;
+    height: 15%;
+    width: 900px;
+}
 
-
+#menu {
+    background: #ffffff;
+    float: left;
+    width: 20%;
+    height: 85%;
+}
+#content {
+    background: #ffffff;
+    float: right;
+    width: 80%;
+    height: 85%;
+}
+#footer {
+    background: #73C8F0;
+    height: 15%;
+    width: 900px;
+}

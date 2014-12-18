@@ -8,6 +8,9 @@
 
 </head>
 <body>
+
+
+
 <form method="POST" action="login">${messageError}
     <table>
         <tr><h1>Авторизация</h1></tr>
@@ -17,5 +20,10 @@
         <tr><td colspan="2" align="right"><input type="submit" name="registration" value="Регистрация" class="demo" /></td></tr>
     </table>
 </form>
+
+
 </body>
 </html>
+
+
+

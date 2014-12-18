@@ -55,7 +55,8 @@ public class SearchServiceImpl implements SearchService {
                                         "  (e.max_tourists - eg.tourist_quantity) AS available_quantity, " +
                                         "  e.duration_tour_minutes, " +
                                         "  eg.seq_excurs_guide, " +
-                                        "  e.price "+
+                                        "  e.price, "+
+                                        "  e.description "+
                                         "FROM Excursion e " +
                                         "  JOIN Excurs_Guide eg ON e.excurs_id = eg.excurs_id " +
                                         "WHERE e.town=:town"
@@ -78,7 +79,9 @@ public class SearchServiceImpl implements SearchService {
 
             Double price = (Double) column[5];
 
-            excursions.add(new Excursion(town,place,idExcursion,availableQuantity,dateTime,durationInMinute,price));
+            String description = (String) column[6];
+
+            excursions.add(new Excursion(idExcursion,town,place,availableQuantity,dateTime,durationInMinute,price,description));
         }
 
         return excursions;

@@ -19,36 +19,24 @@
 
 </head>
 <body>
-<h1>${login}</h1>
+<div align="right"><h1>${login}</h1></div>
 <h2 id="resultReservePlace"></h2>
 <%
     List<Excursion> excursions = ((List<Excursion>) request.getAttribute("excursions"));
 
-    out.println("<table><tr>\n" +
-            "    <th>Место</th>\n" +
-            "    <th>Дата</th>\n" +
-            "    <th>Количество</br> " +
-            "     свободных мест</th>\n" +
-            "    <th>Продолжительность</br> " +
-            "     экскурсии(час)</th>\n" +
-            "    <th>Цена</br>" +
-            "    (за 1 человека)</th>\n" +
-            "    <th>Количество</br>" +
-            "     человек</th>\n" +
-            "    <th> </th>\n" +
-            "   </tr>");
+    out.println("<table>");
     for (Excursion excursion : excursions){
-        out.println("<tr><td><input type='text' id=\"place\" size=\"50\"  value=\""+excursion.getPlace()+"\" readonly/></td> "+
-                "<td><input type='text'  id=\"date\" value=\""+excursion.getDate().toString("dd:MM:yy HH:mm")+"\" readonly/></td>"+
-                "<td><input type='text'  id=\"availablePlaces\"  value=\""+excursion.getAvailable()+"\" readonly/></td>"+
-                "<td><input type='text'  id=\"duration\"  value=\""+excursion.getDuration()+"\" readonly/></td>"+
-                "<td><input type='text'  id=\"price\"  value=\""+excursion.getPrice()+"\" readonly/></td>");
-        out.println("<td><select  id=\"numberPersons\">\n");
+        out.println("<tr><td>Место</td><td>" +excursion.getPlace()+"</td></tr> "+
+                "<tr><td>Описание</td><td>" +excursion.getDescription()+"</td></tr> "+
+                "<tr><td>Дата</td><td>"+excursion.getDate().toString("dd:MM:yy HH:mm")+"</td></tr>"+
+                "<tr><td>Продолжительность(мин.)</td><td>"+excursion.getDuration()+"</td></tr>"+
+                "<tr><td>Цена(руб.)</td><td>"+excursion.getPrice()+"</td></tr>");
+        out.println("<tr><td>Количество мест</td><td><select  id=\"numberPersons\">\n");
         for (int i = 1; i <= excursion.getAvailable(); i++) {
             out.println("<option  value=\""+i+"\">"+i+"</option>\n");
         }
-        out.println("</select></td>");
-        out.println("<td colspan=\"2\"><input type=\"button\" id=\"sendRequest\" value=\"Отправить заявку\" onclick=\"reservePlace()\" class=\"demo\" /></td>"+
+        out.println("</select></td></tr>");
+        out.println("<tr><td colspan=\"2\"><input type=\"button\" id=\"sendRequest\" value=\"Отправить заявку\" onclick=\"reservePlace()\" class=\"demo\" /></td></tr>"+
                 "</tr> <input type=\"hidden\" id=\"town\" value=\""+excursion.getTown()+"\" />"+
                 "</tr> <input type=\"hidden\" id=\"idExcursion\" value=\""+excursion.getIdExcursion()+"\" />");
 
