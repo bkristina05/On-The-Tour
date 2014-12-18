@@ -25,7 +25,7 @@ public class SearchController {
 
 
     @RequestMapping(value = "/selectTown", method = RequestMethod.POST)
-    public ModelAndView authorization(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    public ModelAndView searchExcursion(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
         String town = request.getParameter("townsSelect");
         String login = request.getParameter("login");
