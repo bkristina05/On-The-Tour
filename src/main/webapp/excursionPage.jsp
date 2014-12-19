@@ -20,7 +20,7 @@
 </head>
 <body>
 <div align="right"><h1>${login}</h1></div>
-<h2 id="resultReservePlace"></h2>
+<h3 id="resultReservePlace"></h3>
 <%
     List<Excursion> excursions = ((List<Excursion>) request.getAttribute("excursions"));
 
@@ -46,6 +46,6 @@
 
 %>
 <input type="hidden" id="login" value="${login}" />
-<input type="hidden" id="login2" value="${login}" />
+
 </body>
 </html>

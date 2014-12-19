@@ -28,8 +28,8 @@ public class Excursion {
     @Column(name = "price")
     private Double price;
 
-    @Column(name = "duration_tour_minutes")
-    private Integer duration_tour_minutes;
+    @Column(name = "duration_tour")
+    private Integer duration_tour;
 
     @Column(name = "description")
     private String description;
@@ -42,7 +42,7 @@ public class Excursion {
         this.town = town;
         this.max_tourists = max_tourists;
         this.price = price;
-        this.duration_tour_minutes = duration_tour_minutes;
+        this.duration_tour = duration_tour;
         this.description = description;
     }
 
@@ -87,11 +87,11 @@ public class Excursion {
     }
 
     public Integer getDuration_tour_minutes() {
-        return duration_tour_minutes;
+        return duration_tour;
     }
 
     public void setDuration_tour_minutes(Integer duration_tour_minutes) {
-        this.duration_tour_minutes = duration_tour_minutes;
+        this.duration_tour = duration_tour;
     }
 
     public String getDescription() {
@@ -111,7 +111,7 @@ public class Excursion {
 
         if (description != null ? !description.equals(excursion.description) : excursion.description != null)
             return false;
-        if (duration_tour_minutes != null ? !duration_tour_minutes.equals(excursion.duration_tour_minutes) : excursion.duration_tour_minutes != null)
+        if (duration_tour != null ? !duration_tour.equals(excursion.duration_tour) : excursion.duration_tour != null)
             return false;
         if (excurs_id != null ? !excurs_id.equals(excursion.excurs_id) : excursion.excurs_id != null) return false;
         if (max_tourists != null ? !max_tourists.equals(excursion.max_tourists) : excursion.max_tourists != null)
@@ -130,7 +130,7 @@ public class Excursion {
         result = 31 * result + (town != null ? town.hashCode() : 0);
         result = 31 * result + (max_tourists != null ? max_tourists.hashCode() : 0);
         result = 31 * result + (price != null ? price.hashCode() : 0);
-        result = 31 * result + (duration_tour_minutes != null ? duration_tour_minutes.hashCode() : 0);
+        result = 31 * result + (duration_tour != null ? duration_tour.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
         return result;
     }
@@ -143,7 +143,7 @@ public class Excursion {
                 ", town='" + town + '\'' +
                 ", max_tourists=" + max_tourists +
                 ", price=" + price +
-                ", duration_tour_minutes=" + duration_tour_minutes +
+                ", duration_tour=" + duration_tour +
                 ", description='" + description + '\'' +
                 '}';
     }

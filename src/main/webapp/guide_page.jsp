@@ -17,11 +17,11 @@
 </head>
 <body>
 <div align="left"><h1>Здравствуйте, ${login}</h1></div>
-<form method="POST" action="/guide_page">
+<form method="POST" action="guide_page">
         <input type='hidden' name="user_id" value="${user_id}"/>
         <input type="hidden" name="login" value="${login}" />
     <table>
-        <tr><td colspan="2" align="right"><input type="submit" name="goOnTour" value="Записаться на тур"  class="demo" /></td></tr>
+        <tr><td colspan="2" align="right"><input type="submit" name="goOnTour" value=" Записаться на тур"  class="demo" /></td></tr>
         <tr><td colspan="2" align="right"><input type="submit" name="getExcursions" value="Показать экскурсии"  class="demo" /></td>
         <td><%
                 Map<ExcursionGuide, Excursion> setExcursions=(HashMap<ExcursionGuide, Excursion>)request.getAttribute("Excursions");
@@ -40,7 +40,7 @@
                 }
             %>
         </td></tr>
-        <tr><td colspan="2" align="right"><input type="submit" name="getTourists" value="Показать туристов"  class="demo" /></td></tr>
+        <tr><td colspan="2" align="right"><input type="submit" name="getTourists" value=" Показать туристов"  class="demo" /></td></tr>
         </table>
         <table border="2">
         <%
