@@ -30,7 +30,7 @@ public class SearchServiceImpl implements SearchService {
         Session session = sessionFactory.openSession();
         Query sqlQuery = session.createSQLQuery("SELECT distinct " +
                                                 " town " +
-                                                "FROM Excursion ");
+                                                "FROM excursion ");
         List<String> towns = new LinkedList<>();
 
         List<Object> rows = sqlQuery.list();

@@ -9,7 +9,7 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name = "Excursion")
+@Table(name = "excursion")
 public class Excursion {
     @Id
     @Column(name = "excurs_id")
@@ -37,7 +37,7 @@ public class Excursion {
     public Excursion() {
     }
 
-    public Excursion(String place, String town, Integer max_tourists, Double price, Integer duration_tour_minutes, String description) {
+    public Excursion(String place, String town, Integer max_tourists, Double price, Integer duration_tour, String description) {
         this.place = place;
         this.town = town;
         this.max_tourists = max_tourists;
@@ -62,20 +62,20 @@ public class Excursion {
         this.place = place;
     }
 
-    public String getTown() {
-        return town;
-    }
-
-    public void setTown(String town) {
-        this.town = town;
-    }
-
     public Integer getMax_tourists() {
         return max_tourists;
     }
 
     public void setMax_tourists(Integer max_tourists) {
         this.max_tourists = max_tourists;
+    }
+
+    public String getTown() {
+        return town;
+    }
+
+    public void setTown(String town) {
+        this.town = town;
     }
 
     public Double getPrice() {
@@ -86,11 +86,11 @@ public class Excursion {
         this.price = price;
     }
 
-    public Integer getDuration_tour_minutes() {
+    public Integer getDuration_tour() {
         return duration_tour;
     }
 
-    public void setDuration_tour_minutes(Integer duration_tour_minutes) {
+    public void setDuration_tour(Integer duration_tour) {
         this.duration_tour = duration_tour;
     }
 

@@ -144,13 +144,12 @@ AFTER INSERT OR UPDATE OR DELETE ON excursion
 FOR EACH ROW EXECUTE PROCEDURE add_to_log();
 
 CREATE SEQUENCE hibernate_sequence
-  INCREMENT 1
-  MINVALUE 1
-  MAXVALUE 9223372036854775807
-  START 1
-  CACHE 5;
+INCREMENT 1
+MINVALUE 1
+MAXVALUE 9223372036854775807
+START 1
+CACHE 5;
 
-CREATE ROLE user_db;
-GRANT SELECT, UPDATE, INSERT, DELETE ON ALL TABLES IN SCHEMA public TO user_db;
-CREATE USER user_db1 WITH PASSWORD 'qpwoeiruty';
-GRANT user_db TO user_db1;
+INSERT INTO public.type_name (type_id, type_name) VALUES (1, 'admin');
+INSERT INTO public.type_name (type_id, type_name) VALUES (2, 'guide');
+INSERT INTO public.type_name (type_id, type_name) VALUES (3, 'user');
