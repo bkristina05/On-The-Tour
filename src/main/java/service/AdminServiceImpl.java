@@ -4,6 +4,7 @@ import domain.TypeName;
 import domain.User;
 import domain.UserType;
 import org.hibernate.SessionFactory;
+import org.hibernate.classic.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -59,5 +60,17 @@ public class AdminServiceImpl implements AdminService {
         List<UserType>resultList=sessionFactory.getCurrentSession().createSQLQuery("select * from user_type where user_id='"+id_user+"'").addEntity(UserType.class).list();
         if(resultList.isEmpty())return 0;
         else return resultList.get(0).getType_id();
+    }
+
+    @Transactional
+    @Override
+    public void saveUserType(int id_user, int id_user_type) {
+        Session session = sessionFactory.getCurrentSession();
+        session.createSQLQuery("UPDATE user_type " +
+                "SET type_id=(:id_user_type) " +
+                "WHERE user_id=:id_user").
+                setParameter("id_user_type",id_user_type).
+                setParameter("id_user",id_user).
+                executeUpdate();
     }
 }

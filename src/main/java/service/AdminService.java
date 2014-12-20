@@ -12,4 +12,5 @@ public interface AdminService {
     public User find_user(String login_find);
     public List<TypeName>nameOfType();
     public int id_user_type(String login_find);
+    public void saveUserType(int id_user,int id_user_type);
 }

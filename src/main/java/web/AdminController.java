@@ -45,6 +45,9 @@ public class AdminController {
             request.setAttribute("afterRequest",true);
             return mav;
         }
+        if(request.getParameter("saveUser")!=null&&request.getParameter("set_type")!=null){
+            adminService.saveUserType(Integer.parseInt(request.getParameter("user_id")),Integer.parseInt(request.getParameter("set_type")));
+        }
         return  mav;
     }
 

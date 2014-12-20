@@ -36,7 +36,6 @@
                     Formatter f=new Formatter();
 		            String stringDate=f.format(", %tR %tD", date,date).toString();
                    out.print("<option value=\""+exc.getKey().getSeq_excurs_guide()+"\">"+exc.getValue().getPlace()+", "+exc.getValue().getTown()+  stringDate+"</option>\n");
-
                 }
             %>
         </td></tr>
