@@ -22,18 +22,16 @@
         <tr><td colspan="2" align="left"><input type="submit" name="goOnTour" value=" Записаться на тур"  class="demo" /></td></tr>
         <tr><td colspan="2" align="left"><input type="submit" name="findUser" value=" Найти пользователя:"  class="demo" /></td>
             <td> <input type='text' maxlength='16'  name="login_find"/></td>
-            <td colspan="2" align="left"><input type="submit" name="saveUser" value=" сохранить изменение"  class="demo" /></td>
+            <td colspan="2" align="left"><input type="submit" name="saveUser" width="20" value=" сохранить изменение"  class="demo" /></td>
         </tr>
         <tr>
             <table border="2">
-                <tr>
-                    <td>Имя пользователя</td><td>Возраст</td><td>E-mail</td><td>Телефон</td><td>Cтатус</td>
-                </tr>
                 <%
                     List<TypeName> listTypes= (List<TypeName>) request.getAttribute("listTypes");
                     User findUser= (User) request.getAttribute("findUser");
                     Integer id_type_user=(Integer) request.getAttribute("id_type_user");
                     if (findUser!=null){
+                        out.print("<tr><td>Имя пользователя</td><td>Возраст</td><td>E-mail</td><td>Телефон</td><td>Статус</td></tr>");
                         out.print("<input type='hidden' name=\"user_id\" value=\""+findUser.getUser_id()+"\"/>");
                         out.print("<td>"+findUser.getName()+"</td><td>"+findUser.getAge()+"</td><td>"+findUser.getEmail()+"</td><td>"+findUser.getPhone()+"</td><td>");
                         out.print("<select name=\"set_type\">");
@@ -51,8 +49,8 @@
                 %>
             </table>
         </tr>
+        <tr><td colspan="2" align="left"><input type="submit" name="addExcursion" value="Добавление/редактирование экскурсий"  class="demo" /></td></tr>
     </table>
 </form>
-
 </body>
 </html>

@@ -1,5 +1,6 @@
 package service;
 
+import domain.Excursion;
 import domain.TypeName;
 import domain.User;
 import domain.UserType;
@@ -72,5 +73,39 @@ public class AdminServiceImpl implements AdminService {
                 setParameter("id_user_type",id_user_type).
                 setParameter("id_user",id_user).
                 executeUpdate();
+    }
+
+    @Transactional
+    @Override
+    public List<Excursion> getListExcursion() {
+        return sessionFactory.getCurrentSession().createSQLQuery("select * from excursion").addEntity(Excursion.class).list();
+    }
+
+    @Transactional
+    @Override
+    public void addExcursion(Excursion excursion) {
+        sessionFactory.getCurrentSession().save(excursion);
+    }
+
+    @Transactional
+    @Override
+    public void updateExcursion(Excursion excursion) {
+        Session session = sessionFactory.getCurrentSession();
+        session.createSQLQuery("UPDATE excursion " +
+                "SET place=(:place),town=(:town),max_tourists=(:max_tourists)," +
+                "price=(:price),duration_tour=(:duration_tour),description=(:description) " +
+                "WHERE excurs_id=:"+excursion.getExcurs_id()).
+                setParameter("place",excursion.getPlace()).
+                setParameter("town",excursion.getTown()).
+                setParameter("max_tourists",excursion.getMax_tourists()).
+                setParameter("price",excursion.getPrice()).
+                setParameter("duration_tour",excursion.getDuration_tour()).
+                setParameter("description",excursion.getDescription()).executeUpdate();
+    }
+
+    @Transactional
+    @Override
+    public Excursion getExcursion(int id_excursion) {
+        return (Excursion)sessionFactory.getCurrentSession().createSQLQuery("select * from excursion where excurs_id="+id_excursion).addEntity(Excursion.class).list().get(0);
     }
 }

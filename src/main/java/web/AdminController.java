@@ -26,7 +26,7 @@ public class AdminController {
     @Autowired
     private AdminService adminService;
 
-    @RequestMapping(value = "admin_page", method = RequestMethod.POST)
+    @RequestMapping( value = "admin_page",  method = RequestMethod.POST)
     public ModelAndView get_tourist(HttpServletRequest request,HttpServletResponse response) throws IOException {
         ModelAndView mav=new ModelAndView();
         String login=request.getParameter("login");
@@ -48,8 +48,11 @@ public class AdminController {
         if(request.getParameter("saveUser")!=null&&request.getParameter("set_type")!=null){
             adminService.saveUserType(Integer.parseInt(request.getParameter("user_id")),Integer.parseInt(request.getParameter("set_type")));
         }
+        if(request.getParameter("addExcursion")!=null){
+            request.setAttribute("login",request.getAttribute("login"));
+            request.setAttribute("excursionList",adminService.getListExcursion());
+            mav.setViewName("add_excursion");
+        }
         return  mav;
     }
-
-
 }
