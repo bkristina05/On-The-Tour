@@ -49,7 +49,6 @@
                         }
                     }
                 %>
-
             </table>
         <tr><td colspan="2" align="left"><input type="submit" name="saveUsers" width="20" value=" сохранить изменения"  class="demo" /></td></tr>
         </tr>
