@@ -35,7 +35,7 @@ public class AuthorizationHelper {
     }
 
     public static boolean isLoginValid(String login) {
-        final Pattern pattern = Pattern.compile("^[A-Za-z]([\\\\.A-Za-z0-9-]{1,18})([A-Za-z0-9])");
+        final Pattern pattern = Pattern.compile("^[a-zA-Z0-9]+$");
         final Matcher matcher = pattern.matcher(login);
         if (matcher.find()) {
             System.out.println("Логин подходит");
@@ -47,11 +47,17 @@ public class AuthorizationHelper {
         }
     }
 
-    public static boolean isAgeValid(Integer age){
-        if (age < 90 && age > 15) {
+    public static boolean isAgeValid(String age){
+        Integer ageInt;
+        try {
+            ageInt = Integer.valueOf(age);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+
+        if (ageInt < 90 && ageInt > 15) {
             return true;
         } else {
-            System.out.println("Минимальный(максимальный) возраст для регистрации на сайте 15(90)");
             return false;
         }
     }
