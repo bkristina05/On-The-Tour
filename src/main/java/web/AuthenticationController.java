@@ -50,7 +50,7 @@ public class AuthenticationController {
         Response result = new Response();
 
 
-        if (ageString == null || ageString.trim().isEmpty()|| !AuthorizationHelper.isAgeValid(Integer.valueOf(ageString.trim()))) {
+        if (ageString == null || ageString.trim().isEmpty()|| !AuthorizationHelper.isAgeValid(ageString.trim())) {
             result.setText("<h2>Поле Возраст имеет неверный формат. Минимальный (максимальный) возраст для регистрации на сайте 15 (90)</h2>");
             return result;
         }
