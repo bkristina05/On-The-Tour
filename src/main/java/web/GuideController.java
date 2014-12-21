@@ -75,14 +75,19 @@ public class GuideController {
             request.setAttribute("listExc",listExc);
             request.setAttribute("isAppExc",true);
         }
+
         if(request.getParameter("saveAppointEcursion")!=null){
             if (request.getParameter("calendar")!=null) {
-                int id_excursion = Integer.parseInt(request.getParameter("appExcurs"));
-                String date_exc = request.getParameter("calendar");
-                String[] date = date_exc.split("-");
-                GregorianCalendar calendar = new GregorianCalendar(Integer.parseInt(date[0]), Integer.parseInt(date[1]), Integer.parseInt(date[2]));
-                Long date_excursion = calendar.getTimeInMillis();
-                guideService.appointExcursion(id_excursion, id_guide, date_excursion);
+
+                    int id_excursion = Integer.parseInt(request.getParameter("appExcurs"));
+                    String date_exc = request.getParameter("calendar");
+                    String[] date = date_exc.split("-");
+                    String[] date2 = date[2].split("T");
+                    String[] date3 = date2[1].split(":");
+                    GregorianCalendar calendar = new GregorianCalendar(Integer.parseInt(date[0]), Integer.parseInt(date[1]), Integer.parseInt(date2[0]), Integer.parseInt(date3[0]), Integer.parseInt(date3[1]));
+                    Long date_excursion = calendar.getTimeInMillis();
+                    guideService.appointExcursion(id_excursion, id_guide, date_excursion);
+
             }
         }
 

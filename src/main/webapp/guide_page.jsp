@@ -100,12 +100,12 @@
                     for(Excursion excursion:excList){
                         out.print("<option value=\""+excursion.getExcurs_id()+"\">");
                         out.print(excursion.getPlace()+", "+excursion.getTown());
-                        out.println("</option");
+                        out.println("</option>");
                     }
-                    out.println("</select");
+                    out.println("</select>");
                     out.println("</td>");
                     out.print("<td>");
-                    out.print("<input type=\"date\" name=\"calendar\">");
+                    out.print("<input type=\"datetime-local\" name=\"calendar\"/>");
                     out.print("</td>");
                     out.println("</tr></table>");
                     out.println("<tr><td colspan=\"2\" align=\"left\"><input type=\"submit\" name=\"saveAppointEcursion\" value=\"Сохранить назначенную экскурсию\"  class=\"demo\" /></td></tr>");
@@ -113,6 +113,5 @@
             %>
     </table>
 </form>
-
 </body>
 </html>
