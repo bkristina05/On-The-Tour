@@ -2,6 +2,7 @@
 <%@ page import="domain.ExcursionGuide" %>
 <%@ page import="domain.Excursion" %>
 <%@ page import="java.util.*" %>
+<%@ page import="domain.ExcursionTourist" %>
 <%--
   Created by IntelliJ IDEA.
   User: Igor
@@ -43,7 +44,8 @@
         </table>
         <table border="2">
         <%
-            if(setTourists!=null)
+            List<ExcursionTourist>excTourists= (List<ExcursionTourist>) request.getAttribute("listExcursionTourist");
+            if(excTourists!=null)
                 if(!setTourists.isEmpty()){
                     if(id!=null)
                     for (Map.Entry<ExcursionGuide, Excursion> exc: setExcursions.entrySet()){
@@ -55,10 +57,14 @@
                         if(id.equals(exc.getKey().getSeq_excurs_guide()))out.println("<tr>Заявки на экскурсию \""+exc.getValue().getPlace()+", "+exc.getValue().getTown()+"\" на "+stringDate+"</tr>");
                     }
 
-
-                    out.println("<tr><td>Имя туриста</td><td>Номер телефона</td><td>адрес электронной почты</td></tr>");
-                    for(User tourist:setTourists){
-                        out.println("<tr><td>"+tourist.getName()+"</td><td>"+tourist.getPhone()+"</td><td>"+tourist.getEmail()+"</td></tr>");
+                    out.println("<td>Номер заявки</td><td>Количество человек</td><tr><td>Имя туриста</td><td>Номер телефона</td><td>адрес электронной почты</td></tr>");
+                    User tourist=new User();
+                    for(ExcursionTourist excursionTourist:excTourists){
+                        for(User user:setTourists){
+                            if(excursionTourist.getUser_id()==user.getUser_id())tourist=user;
+                            if(excursionTourist.getUser_id()==user.getUser_id())break;
+                        }
+                        out.println("<tr><td>"+excursionTourist.getSequence_id()+"</td><td>"+tourist.getName()+"</td><td>"+tourist.getPhone()+"</td><td>"+tourist.getEmail()+"</td></tr>");
                     }
                 }else {
                     if(id!=null)

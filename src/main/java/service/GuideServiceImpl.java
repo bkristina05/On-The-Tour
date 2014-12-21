@@ -98,4 +98,26 @@ public class GuideServiceImpl implements GuideService {
                 "where type_id='" + typeId + "'").addEntity(TypeName.class).list();
         return typeName.get(0).getType_name();
     }
+
+    /**
+     * Возвращает список заявок, содержащий id пользователей, сделавших заявки на конкретную экскурсию
+     * @param excurs_id
+     * @param guide_id
+     * @return
+     */
+    @Transactional
+    @Override
+    public List<ExcursionTourist> listExcursionTouris(int excurs_id, int guide_id) {
+        List<ExcursionGuide>listSeqExcGuide=sessionFactory.getCurrentSession().createSQLQuery("select * from excurs_guide " +
+                "where excurs_id="+excurs_id+" and user_guide_id="+guide_id+"").addEntity(ExcursionGuide.class).list();
+        int id_seq_exc_g=0;
+        if(listSeqExcGuide.isEmpty())return  new ArrayList<>();
+        else {
+            id_seq_exc_g=listSeqExcGuide.get(0).getSeq_excurs_guide();
+        }
+
+        List<ExcursionTourist>listTourists=sessionFactory.getCurrentSession().createSQLQuery("select * from excurs_tourist " +
+                "where excurs_guide_seq='"+id_seq_exc_g+"'").addEntity(ExcursionTourist.class).list();
+        return listTourists;
+    }
 }

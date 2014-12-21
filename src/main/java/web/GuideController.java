@@ -50,7 +50,9 @@ public class GuideController {
         if(request.getParameter("getTourists")!=null&&request.getParameter("select_excursion")!=null){
             int id_excurs=Integer.parseInt(request.getParameter("select_excursion"));
             Set<User> setUser=guideService.getListTourists(id_excurs,id_guide);
+            List<ExcursionTourist>excursionTourists=guideService.listExcursionTouris(id_excurs,id_guide);
             request.setAttribute("id_excursion",id_excurs);
+            request.setAttribute("listExcursionTourist",excursionTourists);
             request.setAttribute("setTourists",setUser);
             set=guideService.getListExcursions(id_guide);
             request.setAttribute("Excursions",set);
