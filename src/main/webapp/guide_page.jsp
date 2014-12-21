@@ -41,7 +41,7 @@
             %>
         </td></tr>
         <tr><td colspan="2" align="right"><input type="submit" name="getTourists" value=" Показать туристов"  class="demo" /></td></tr>
-        </table>
+        <tr>
         <table border="2">
         <%
             List<ExcursionTourist>excTourists= (List<ExcursionTourist>) request.getAttribute("listExcursionTourist");
@@ -80,6 +80,37 @@
                         }
                 }
         %>
+
+        </table></tr>
+            <table>
+            <tr><td colspan="2" align="left"><input type="submit" name="addExcursion" value="Добавление/редактирование экскурсий"  class="demo" /></td></tr>
+            <tr><td colspan="2" align="left"><input type="submit" name="appointExcursion" value="Назначить экскурсию"  class="demo" /></td></tr>
+            </table>
+            <%
+                List<Excursion>excList= (List<Excursion>) request.getAttribute("listExc");
+                Boolean isAppExc= (Boolean) request.getAttribute("isAppExc");
+
+                if(isAppExc!=null){
+                    out.println("<table board=\"2\"><tr>");
+                    out.println("<td>Экскурсия</td><td>Дата экскурсии</td>");
+                    out.println("</tr>");
+                    out.println("<tr>");
+                    out.println("<td>");
+                    out.println("<select name=\"appExcurs\">");
+                    for(Excursion excursion:excList){
+                        out.print("<option value=\""+excursion.getExcurs_id()+"\">");
+                        out.print(excursion.getPlace()+", "+excursion.getTown());
+                        out.println("</option");
+                    }
+                    out.println("</select");
+                    out.println("</td>");
+                    out.print("<td>");
+                    out.print("<input type=\"date\" name=\"calendar\">");
+                    out.print("</td>");
+                    out.println("</tr></table>");
+                    out.println("<tr><td colspan=\"2\" align=\"left\"><input type=\"submit\" name=\"saveAppointEcursion\" value=\"Сохранить назначенную экскурсию\"  class=\"demo\" /></td></tr>");
+                }
+            %>
     </table>
 </form>
 

@@ -30,7 +30,7 @@ public class AddExcursionController {
         String login=request.getParameter("login");
         if(request.getParameter("returnToAdminPage")!=null){
             request.setAttribute("login",login);
-            mav.setViewName("admin_page");
+            mav.setViewName("guide_page");
             return mav;
         }
         if(request.getParameter("rewrite")!=null){

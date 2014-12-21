@@ -16,7 +16,7 @@
 <body>
 <input type="hidden" name="login" value="${login}" />
 <form method="POST" action="add_excursion_for_admin">
-    <input align="right" type="submit" name="returnToAdminPage" value="Страница администратора"  class="demo" />
+    <input align="right" type="submit" name="returnToAdminPage" value="Домашняя страница"  class="demo" />
     <table>
         <tr><td colspan="2" align="left"><input type="submit" name="rewrite" value="Редактировать экскурсию"  class="demo" /></td><td>
         <%

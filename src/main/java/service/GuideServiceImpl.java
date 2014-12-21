@@ -120,4 +120,19 @@ public class GuideServiceImpl implements GuideService {
                 "where excurs_guide_seq='"+id_seq_exc_g+"'").addEntity(ExcursionTourist.class).list();
         return listTourists;
     }
+
+    /**
+     * назначение новой экскурсии
+     * @param excurs_id тип экскурсии(место)
+     * @param user_guide_id гид, проводящий экскурсию
+     * @param date_excurs дата экскурсии
+     */
+    @Transactional
+    @Override
+    public void appointExcursion(Integer excurs_id, Integer user_guide_id, Long date_excurs) {
+        List<Excursion>excursion=sessionFactory.getCurrentSession().createSQLQuery("select * from excursion where excurs_id="+excurs_id).addEntity(Excursion.class).list();
+        int tourist_quantity=excursion.get(0).getMax_tourists();
+        ExcursionGuide excursionGuide=new ExcursionGuide(excurs_id,user_guide_id,date_excurs,tourist_quantity);
+        sessionFactory.getCurrentSession().save(excursionGuide);
+    }
 }

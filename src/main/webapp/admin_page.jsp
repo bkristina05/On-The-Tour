@@ -53,7 +53,6 @@
                 %>
             </table>
         </tr>
-        <tr><td colspan="2" align="left"><input type="submit" name="addExcursion" value="Добавление/редактирование экскурсий"  class="demo" /></td></tr>
         <tr></tr><tr><td colspan="2" align="left"><input type="submit" name="outAllUsers" value="Показать всеx пользователей"  class="demo" /></td></tr>
         <tr>
             <%

@@ -84,6 +84,7 @@ public class AdminServiceImpl implements AdminService {
     @Transactional
     @Override
     public void addExcursion(Excursion excursion) {
+
         sessionFactory.getCurrentSession().save(excursion);
     }
 

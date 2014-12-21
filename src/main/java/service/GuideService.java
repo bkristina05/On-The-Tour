@@ -16,4 +16,5 @@ public interface GuideService {
     public int getIdUser(String user_login);
     public String getTypeName(int user_id);
     public List<ExcursionTourist> listExcursionTouris(int excurs_id, int guide_id);
+    public void appointExcursion(Integer excurs_id, Integer user_guide_id, Long date_excurs);
 }
