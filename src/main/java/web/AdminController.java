@@ -1,5 +1,6 @@
 package web;
 
+import domain.UserType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,22 +37,20 @@ public class AdminController {
         request.setAttribute("login", login);
         mav.setViewName("homePage");
         }
-        if(request.getParameter("findUser")!=null){
-            String login_find=request.getParameter("login_find");
-            if(login_find.length()==0)login_find="0";
+        if(request.getParameter("outAllUsers")!=null){
             request.setAttribute("listTypes",adminService.nameOfType());
-            request.setAttribute("findUser",adminService.find_user(login_find));
-            request.setAttribute("id_type_user",adminService.id_user_type(login_find));
-            request.setAttribute("afterRequest",true);
+            request.setAttribute("userTypeList",adminService.userType());
+            request.setAttribute("users",adminService.allUsers());
             return mav;
         }
-        if(request.getParameter("saveUser")!=null&&request.getParameter("set_type")!=null){
-            System.out.println();
-            if(request.getParameter("nowType").equals("1"))request.setAttribute("error","вы не можете изменять права администратора");
-            else adminService.saveUserType(Integer.parseInt(request.getParameter("user_id")),Integer.parseInt(request.getParameter("set_type")));
-        }
-        if(request.getParameter("outAllUsers")!=null){
-            request.setAttribute("listUsers",adminService.allUsers());
+        if(request.getParameter("saveUsers")!=null){
+            List<UserType>userTypeList=adminService.userType();
+            for (UserType userType:userTypeList){
+                int typeId=Integer.parseInt(request.getParameter(userType.getUser_id().toString()));
+                if(userType.getType_id().intValue()!=1&&(userType.getType_id().intValue()!=typeId)){
+                    adminService.saveUserType(userType.getUser_id().intValue(),typeId);
+                }
+            }
         }
         return  mav;
     }

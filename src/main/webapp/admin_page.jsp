@@ -1,6 +1,7 @@
 <%@ page import="domain.TypeName" %>
 <%@ page import="java.util.List" %>
 <%@ page import="domain.User" %>
+<%@ page import="domain.UserType" %>
 <%--
   Created by IntelliJ IDEA.
   User: Igor
@@ -20,56 +21,38 @@
     <input type="hidden" name="login" value="${login}" />
     <table>
         <tr><td colspan="2" align="left"><input type="submit" name="goOnTour" value=" Записаться на тур"  class="demo" /></td></tr>
-        <tr><td colspan="2" align="left"><input type="submit" name="findUser" value=" Найти по логину:"  class="demo" /></td>
-            <td> <input type='text' maxlength='16'  name="login_find"/></td>
-            <td colspan="2" align="left"><input type="submit" name="saveUser" width="20" value=" сохранить изменение"  class="demo" /></td>
-        </tr>
+        <tr></tr><tr><td colspan="2" align="left"><input type="submit" name="outAllUsers" value="Показать всеx пользователей"  class="demo" /></td></tr>
         <tr>
             <table border="2">
                 <%
                     List<TypeName> listTypes= (List<TypeName>) request.getAttribute("listTypes");
-                    User findUser= (User) request.getAttribute("findUser");
-                    String error= (String) request.getAttribute("error");
-                    Integer id_type_user=(Integer) request.getAttribute("id_type_user");
-                    if (findUser!=null){
+                    List<UserType>userTypeList= (List<UserType>) request.getAttribute("userTypeList");
+                    List<User>users= (List<User>) request.getAttribute("users");
+                    if (users!=null){
                         out.print("<tr><td>Имя пользователя</td><td>Возраст</td><td>E-mail</td><td>Телефон</td><td>Статус</td></tr>");
-                        out.print("<input type='hidden' name=\"user_id\" value=\""+findUser.getUser_id()+"\"/>");
-                        out.print("<td>"+findUser.getName()+"</td><td>"+findUser.getAge()+"</td><td>"+findUser.getEmail()+"</td><td>"+findUser.getPhone()+"</td><td>");
-                        if(id_type_user.intValue()==1)out.print("<input type=\"hidden\" name=\"nowType\" value=\""+id_type_user.intValue()+"\" />");
-                        out.print("<select name=\"set_type\">");
-                        for(TypeName typeName:listTypes){
-                            if(id_type_user.intValue()==typeName.getType_id()){
-                                out.print("<option selected value=\""+typeName.getType_id()+"\">"+typeName.getType_name()+"</option>\n");
+                        for(User findUser:users){
+                            out.print("<tr><td>"+findUser.getName()+"</td><td>"+findUser.getAge()+"</td><td>"+findUser.getEmail()+"</td><td>"+findUser.getPhone()+"</td><td>");
+                            out.print("<select name=\""+findUser.getUser_id()+"\">");
+                            Integer id_type_user=0;
+                            for(UserType userType:userTypeList){
+                                if(userType.getUser_id().intValue()==findUser.getUser_id().intValue())id_type_user=userType.getType_id();
+                                if(userType.getUser_id().intValue()==findUser.getUser_id().intValue())break;
                             }
-                            else out.print("<option value=\""+typeName.getType_id()+"\">"+typeName.getType_name()+"</option>\n");
+                            for(TypeName typeName:listTypes){
+                                if(id_type_user.intValue()==typeName.getType_id().intValue()){
+                                    out.print("<option selected value=\""+typeName.getType_id()+"\">"+typeName.getType_name()+"</option>\n");
+                                }
+                                else out.print("<option value=\""+typeName.getType_id()+"\">"+typeName.getType_name()+"</option>\n");
+                            }
+                            out.print("</select>");
+                            out.print("</td></tr>");
                         }
-                        out.print("</select>");
-                        out.print("</td>");
-                    }
-                    else {
-                        Boolean afReq= (Boolean) request.getAttribute("afterRequest");
-                        if(afReq!=null&&afReq)out.print("<td>Такой пользователь не зарегистрирован</td>");
                     }
                 %>
+
             </table>
+        <tr><td colspan="2" align="left"><input type="submit" name="saveUsers" width="20" value=" сохранить изменения"  class="demo" /></td></tr>
         </tr>
-        <tr></tr><tr><td colspan="2" align="left"><input type="submit" name="outAllUsers" value="Показать всеx пользователей"  class="demo" /></td></tr>
-        <tr>
-            <%
-                List<User>users= (List<User>) request.getAttribute("listUsers");
-                if(users!=null){
-                    out.println("<tr><table border=\"2\"><tr><td>Логин</td><td>Имя пользователя</td><td>Возраст</td><td>E-mail</td><td>Телефон</td></tr>");
-                    for(User user:users){
-                        out.println("<tr><td>"+user.getLogin()+"</td><td>"+user.getName()+"</td><td>"+user.getAge()+"</td><td>"+user.getEmail()+"</td><td>"+user.getPhone()+"</td></tr>");
-                    }
-                    out.println("</table>");
-                    out.println("</tr>");
-                }
-            %>
-        </tr>
-        <tr><%
-            if(error!=null)out.print("<h2>Ошибка: "+error+"</h2");
-        %></tr>
     </table>
 </form>
 </body>

@@ -3,6 +3,7 @@ package service;
 import domain.Excursion;
 import domain.TypeName;
 import domain.User;
+import domain.UserType;
 
 import java.util.List;
 
@@ -19,4 +20,5 @@ public interface AdminService {
     public void updateExcursion(Excursion excursion);
     public  Excursion getExcursion(int id_excursion);
     public  List<User> allUsers();
+    public List<UserType>userType();
 }

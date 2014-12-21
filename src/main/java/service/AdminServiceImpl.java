@@ -116,4 +116,10 @@ public class AdminServiceImpl implements AdminService {
     public List<User> allUsers() {
         return sessionFactory.getCurrentSession().createSQLQuery("select * from users").addEntity(User.class).list();
     }
+
+    @Transactional
+    @Override
+    public List<UserType> userType() {
+        return sessionFactory.getCurrentSession().createSQLQuery("select * from user_type").addEntity(UserType.class).list();
+    }
 }
