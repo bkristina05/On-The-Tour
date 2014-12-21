@@ -57,11 +57,13 @@
                         if(id.equals(exc.getKey().getSeq_excurs_guide()))out.println("<tr>Заявки на экскурсию \""+exc.getValue().getPlace()+", "+exc.getValue().getTown()+"\" на "+stringDate+"</tr>");
                     }
 
-                    out.println("<td>Номер заявки</td><td>Количество человек</td><tr><td>Имя туриста</td><td>Номер телефона</td><td>адрес электронной почты</td></tr>");
+                    out.println("<tr><td>Номер заявки</td><td>Количество человек</td><td>Имя туриста</td><td>Номер телефона</td><td>адрес электронной почты</td></tr>");
                     User tourist=new User();
                     for(ExcursionTourist excursionTourist:excTourists){
                         for(User user:setTourists){
-                            if(excursionTourist.getUser_id()==user.getUser_id())tourist=user;
+                            if((int)excursionTourist.getUser_id()==(int)user.getUser_id()){
+                                tourist=user;
+                            }
                             if(excursionTourist.getUser_id()==user.getUser_id())break;
                         }
                         out.println("<tr><td>"+excursionTourist.getSequence_id()+"</td><td>"+excursionTourist.getTourist_quantity()+"</td><td>"+tourist.getName()+"</td><td>"+tourist.getPhone()+"</td><td>"+tourist.getEmail()+"</td></tr>");
