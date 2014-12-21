@@ -20,21 +20,17 @@ public class ExcursionTourist {
     @Column(name = "excurs_guide_seq")
     private Integer excurs_guide_seq;
 
+    @Column(name = "tourist_quantity")
+    private Integer tourist_quantity;
 
-    public ExcursionTourist(Integer user_id, Integer excurs_guide_seq) {
-        this.user_id = user_id;
-        this.excurs_guide_seq = excurs_guide_seq;
-    }
 
     public ExcursionTourist() {
     }
 
-    public Integer getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(Integer user_id) {
+    public ExcursionTourist(Integer user_id, Integer excurs_guide_seq, Integer tourist_quantity) {
         this.user_id = user_id;
+        this.excurs_guide_seq = excurs_guide_seq;
+        this.tourist_quantity = tourist_quantity;
     }
 
     public Integer getSequence_id() {
@@ -45,12 +41,28 @@ public class ExcursionTourist {
         this.sequence_id = sequence_id;
     }
 
+    public Integer getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(Integer user_id) {
+        this.user_id = user_id;
+    }
+
     public Integer getExcurs_guide_seq() {
         return excurs_guide_seq;
     }
 
     public void setExcurs_guide_seq(Integer excurs_guide_seq) {
         this.excurs_guide_seq = excurs_guide_seq;
+    }
+
+    public Integer getTourist_quantity() {
+        return tourist_quantity;
+    }
+
+    public void setTourist_quantity(Integer tourist_quantity) {
+        this.tourist_quantity = tourist_quantity;
     }
 
     @Override
@@ -63,6 +75,8 @@ public class ExcursionTourist {
         if (excurs_guide_seq != null ? !excurs_guide_seq.equals(that.excurs_guide_seq) : that.excurs_guide_seq != null)
             return false;
         if (sequence_id != null ? !sequence_id.equals(that.sequence_id) : that.sequence_id != null) return false;
+        if (tourist_quantity != null ? !tourist_quantity.equals(that.tourist_quantity) : that.tourist_quantity != null)
+            return false;
         if (user_id != null ? !user_id.equals(that.user_id) : that.user_id != null) return false;
 
         return true;
@@ -73,6 +87,7 @@ public class ExcursionTourist {
         int result = sequence_id != null ? sequence_id.hashCode() : 0;
         result = 31 * result + (user_id != null ? user_id.hashCode() : 0);
         result = 31 * result + (excurs_guide_seq != null ? excurs_guide_seq.hashCode() : 0);
+        result = 31 * result + (tourist_quantity != null ? tourist_quantity.hashCode() : 0);
         return result;
     }
 
@@ -82,6 +97,7 @@ public class ExcursionTourist {
                 "sequence_id=" + sequence_id +
                 ", user_id=" + user_id +
                 ", excurs_guide_seq=" + excurs_guide_seq +
+                ", tourist_quantity=" + tourist_quantity +
                 '}';
     }
 }

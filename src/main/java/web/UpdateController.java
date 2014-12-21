@@ -16,23 +16,26 @@ import java.io.IOException;
 @SessionAttributes("login")
 public class UpdateController {
 
+
     @Autowired
     private SearchService searchService;
 
     @RequestMapping(value = "/reservePlace", method = RequestMethod.GET)
-    public @ResponseBody Response reserve(
-            @RequestParam("login") String login,
-            @RequestParam("idExcursion") Integer idExcursion,
-            @RequestParam("numberPersons") Integer numberPersons,
-            HttpServletRequest request, HttpServletResponse response
+    public @ResponseBody Response reserve(@RequestParam("login") String login,
+                                          @RequestParam("idExcursion") Integer idExcursion,
+                                          @RequestParam("numberPersons") Integer numberPersons,
+                                          HttpServletRequest request, HttpServletResponse response
     ) throws IOException {
+
+
+
 
         Response result = new Response();
 
         System.out.println("login = " + login);
         System.out.println("idExcursion = " + idExcursion);
         System.out.println("numberPersons = " + numberPersons);
-        Integer isReserve = searchService.getReserve(idExcursion,login,numberPersons);
+        Integer isReserve = searchService.reserve(idExcursion, login, numberPersons);
         if(isReserve==-1){
             result.setText("Заявка отклонена!");
             return result;

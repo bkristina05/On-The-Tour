@@ -44,5 +44,22 @@ public class SearchController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/privateOffice", method = RequestMethod.POST)
+    public ModelAndView selectionDataForPrivateOffice (HttpServletRequest request, HttpServletResponse response)  throws IOException, ServletException{
+
+        String login = request.getParameter("login");
+        System.out.println("login = " + login);
+        ModelAndView modelAndView = new ModelAndView();
+
+        List<Excursion> excursions = searchService.getReservedExcursions(login);
+        System.out.println("excursions = " + excursions);
+
+        request.setAttribute("excursions", excursions);
+
+        modelAndView.addObject("login", login);
+        modelAndView.setViewName("privateOffice");
+
+        return modelAndView;
+    }
 
 }

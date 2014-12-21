@@ -18,7 +18,13 @@
 </head>
 <body>
 
-<h1>Добро пожаловать:${login}</h1>
+<div align="right"><h1>${login}</h1></div>
+
+<form method="POST" action="privateOffice">
+    <input type="hidden" name="login" value="${login}" />
+    <div align="right"><input type="submit" name="privateOffice" value="Личный кабинет" class="demo" /></div>
+</form>
+
 <form method="POST" action="selectTown">
     <table>
     <tr><td>В каком городе хотите посетить экскурсию?</td></tr>
