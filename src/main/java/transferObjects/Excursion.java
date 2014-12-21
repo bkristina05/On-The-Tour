@@ -14,6 +14,10 @@ public class Excursion {
     private Integer duration;
     private Double price;
     private String description;
+    private String name;
+    private String phone;
+    private String email;
+
 
     public Excursion(Integer idExcursion, String town, String place, Integer available, DateTime date, Integer duration, Double price, String description) {
         this.idExcursion = idExcursion;
@@ -24,6 +28,43 @@ public class Excursion {
         this.duration = duration;
         this.price = price;
         this.description = description;
+    }
+
+    public Excursion(Double price, String town, String place, DateTime date, Integer duration, String name, String phone, String email, Integer available,Integer idExcursion) {
+        this.price = price;
+        this.town = town;
+        this.place = place;
+        this.date = date;
+        this.duration = duration;
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.available = available;
+        this.idExcursion = idExcursion;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Integer getIdExcursion() {

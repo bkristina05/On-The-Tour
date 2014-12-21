@@ -72,6 +72,7 @@ CREATE TABLE excurs_tourist
   sequence_id integer NOT NULL,
   user_id integer,
   excurs_guide_seq integer,
+  tourist_quantity integer,
   CONSTRAINT Excurs_Tourist_pkey PRIMARY KEY (sequence_id),
   CONSTRAINT Excurs_Tourist_excurs_guide_seq_fkey FOREIGN KEY (excurs_guide_seq)
   REFERENCES excurs_guide (seq_excurs_guide) MATCH SIMPLE
