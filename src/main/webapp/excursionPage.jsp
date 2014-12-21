@@ -27,6 +27,10 @@
     <div align="right"><input type="submit" name="privateOffice" value="Личный кабинет" class="demo" /></div>
 </form>
 
+<form method="POST" action="excursionPage">
+    <input type="hidden" name="login" value="${login}" />
+    <div align="right"><input type="submit" name="atHome" value="Домой" class="demo" /></div>
+</form>
 <%
     List<Excursion> excursions = ((List<Excursion>) request.getAttribute("excursions"));
 
