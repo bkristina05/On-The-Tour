@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="705731719">
+  <component name="DataSourceManagerImpl" format="xml" hash="515444769">
     <data-source source="LOCAL" name="PostgreSQL - excursions@localhost" uuid="2b4da529-1daa-4fc0-a84d-23db82d80b4d">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
@@ -10,6 +10,15 @@
       <user-password>dfc6dfc5dfc1dfc5dfc7dfc5dfdedfc3dfdc</user-password>
       <schema-pattern>excursions.pg_catalog excursions.public</schema-pattern>
       <default-schemas>excursions.pg_catalog excursions.public</default-schemas>
+      <libraries />
+    </data-source>
+    <data-source source="LOCAL" name="PostgreSQL - excursions@localhost [2]" uuid="8c96c61b-ebc5-460c-87ac-76ff4f219654">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/excursions</jdbc-url>
+      <user-name>postgres</user-name>
+      <user-password>dfc6dfc5dfc1dfc5dfc7dfc5dfdedfc3dfdc</user-password>
       <libraries />
     </data-source>
   </component>

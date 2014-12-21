@@ -64,7 +64,7 @@
                             if(excursionTourist.getUser_id()==user.getUser_id())tourist=user;
                             if(excursionTourist.getUser_id()==user.getUser_id())break;
                         }
-                        out.println("<tr><td>"+excursionTourist.getSequence_id()+"</td><td>"+tourist.getName()+"</td><td>"+tourist.getPhone()+"</td><td>"+tourist.getEmail()+"</td></tr>");
+                        out.println("<tr><td>"+excursionTourist.getSequence_id()+"</td><td>"+excursionTourist.getTourist_quantity()+"</td><td>"+tourist.getName()+"</td><td>"+tourist.getPhone()+"</td><td>"+tourist.getEmail()+"</td></tr>");
                     }
                 }else {
                     if(id!=null)
