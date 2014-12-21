@@ -51,7 +51,7 @@ public class AdminController {
         if(request.getParameter("addExcursion")!=null){
             request.setAttribute("login",request.getAttribute("login"));
             request.setAttribute("excursionList",adminService.getListExcursion());
-            mav.setViewName("add_excursion");
+            mav.setViewName("/add_excursion_for_admin");
         }
         return  mav;
     }

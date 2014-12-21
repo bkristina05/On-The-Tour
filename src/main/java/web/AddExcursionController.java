@@ -24,7 +24,7 @@ public class AddExcursionController {
     @Autowired
     private AdminService adminService;
 
-    @RequestMapping( value = "add_excursion",  method = RequestMethod.POST)
+    @RequestMapping( value = "add_excursion_for_admin",  method = RequestMethod.POST)
     public ModelAndView get_tourist(HttpServletRequest request,HttpServletResponse response) throws IOException {
         ModelAndView mav=new ModelAndView();
         String login=request.getParameter("login");
