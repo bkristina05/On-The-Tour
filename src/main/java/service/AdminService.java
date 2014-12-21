@@ -18,4 +18,5 @@ public interface AdminService {
     public void addExcursion(Excursion excursion);
     public void updateExcursion(Excursion excursion);
     public  Excursion getExcursion(int id_excursion);
+    public  List<User> allUsers();
 }

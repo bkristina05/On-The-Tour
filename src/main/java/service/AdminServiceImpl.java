@@ -109,4 +109,10 @@ public class AdminServiceImpl implements AdminService {
     public Excursion getExcursion(int id_excursion) {
         return (Excursion)sessionFactory.getCurrentSession().createSQLQuery("select * from excursion where excurs_id="+id_excursion).addEntity(Excursion.class).list().get(0);
     }
+
+    @Transactional
+    @Override
+    public List<User> allUsers() {
+        return sessionFactory.getCurrentSession().createSQLQuery("select * from users").addEntity(User.class).list();
+    }
 }

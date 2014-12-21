@@ -46,7 +46,12 @@ public class AdminController {
             return mav;
         }
         if(request.getParameter("saveUser")!=null&&request.getParameter("set_type")!=null){
-            adminService.saveUserType(Integer.parseInt(request.getParameter("user_id")),Integer.parseInt(request.getParameter("set_type")));
+            System.out.println();
+            if(request.getParameter("nowType").equals("1"))request.setAttribute("error","вы не можете изменять права администратора");
+            else adminService.saveUserType(Integer.parseInt(request.getParameter("user_id")),Integer.parseInt(request.getParameter("set_type")));
+        }
+        if(request.getParameter("outAllUsers")!=null){
+            request.setAttribute("listUsers",adminService.allUsers());
         }
         if(request.getParameter("addExcursion")!=null){
             request.setAttribute("login",request.getAttribute("login"));
