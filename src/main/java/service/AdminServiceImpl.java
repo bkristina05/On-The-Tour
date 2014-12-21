@@ -94,13 +94,14 @@ public class AdminServiceImpl implements AdminService {
         session.createSQLQuery("UPDATE excursion " +
                 "SET place=(:place),town=(:town),max_tourists=(:max_tourists)," +
                 "price=(:price),duration_tour=(:duration_tour),description=(:description) " +
-                "WHERE excurs_id=:"+excursion.getExcurs_id()).
+                "WHERE excurs_id=(:id)").
                 setParameter("place",excursion.getPlace()).
                 setParameter("town",excursion.getTown()).
                 setParameter("max_tourists",excursion.getMax_tourists()).
                 setParameter("price",excursion.getPrice()).
                 setParameter("duration_tour",excursion.getDuration_tour()).
-                setParameter("description",excursion.getDescription()).executeUpdate();
+                setParameter("description",excursion.getDescription()).setParameter("id",excursion.getExcurs_id()).
+                executeUpdate();
     }
 
     @Transactional

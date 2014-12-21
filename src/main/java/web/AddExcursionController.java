@@ -1,5 +1,6 @@
 package web;
 
+import domain.Excursion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,8 +30,37 @@ public class AddExcursionController {
         String login=request.getParameter("login");
         if(request.getParameter("rewrite")!=null){
             request.setAttribute("isRedact",true);
+            request.setAttribute("id_excursion",Integer.parseInt(request.getParameter("excursionList")));
             request.setAttribute("excursionList",adminService.getListExcursion());
             request.setAttribute("excursion",adminService.getExcursion(Integer.parseInt(request.getParameter("excursionList"))));
+        }
+        if(request.getParameter("newExcursion")!=null){
+            request.setAttribute("excursionList",adminService.getListExcursion());
+            request.setAttribute("isAddExcursion",true);
+            request.setAttribute("id_excursion",request.getParameter("excursionList"));
+            request.setAttribute("excursion",adminService.getExcursion(Integer.parseInt(request.getParameter("excursionList"))));
+        }
+        if(request.getParameter("save")!=null){
+            request.setAttribute("excursionList",adminService.getListExcursion());
+            request.setAttribute("excursion",adminService.getExcursion(Integer.parseInt(request.getParameter("excursionList"))));
+            request.setAttribute("id_excursion",request.getParameter("excursionList"));
+            if(request.getParameter("move")!=null){
+                String description=request.getParameter("description");
+                int duration_tour=Integer.parseInt(request.getParameter("duration_tour"));
+                String place=request.getParameter("place");
+                String town=request.getParameter("town");
+                int max_tourists=Integer.parseInt(request.getParameter("max_tourists"));
+                double price=Double.parseDouble(request.getParameter("price"));
+                Excursion excursion=new Excursion(place,town,max_tourists,price,duration_tour,description);
+                if(request.getParameter("move").equals("insert")){
+
+                    adminService.addExcursion(excursion);
+                    request.setAttribute("excursionList",adminService.getListExcursion());
+                    return  mav;
+                }
+                excursion.setExcurs_id(Integer.parseInt(request.getParameter("id_excursion")));
+                adminService.updateExcursion(excursion);
+            }
         }
         return  mav;
     }
