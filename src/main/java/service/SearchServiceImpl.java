@@ -38,7 +38,6 @@ public class SearchServiceImpl implements SearchService {
             String town = (String) row;
             towns.add(town);
         }
-
         return towns;
     }
 
@@ -69,8 +68,8 @@ public class SearchServiceImpl implements SearchService {
 
             Long timestamp = ((BigInteger) column[1]).longValue();
             DateTime dateTime = new DateTime(timestamp * 1000);
-            if (dateTime.getMillis() < DateTime.now().getMillis()) continue;
 
+            if (dateTime.getMillis() < DateTime.now().getMillis()) continue;
             Integer availableQuantity = (Integer) column[2];
 
             Integer duration = (Integer) column[3];

@@ -4,6 +4,7 @@ import domain.Excursion;
 import domain.ExcursionTourist;
 
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -14,4 +15,5 @@ public interface GuideService {
     public java.util.Map<domain.ExcursionGuide, Excursion> getListExcursions(int guide_id);
     public int getIdUser(String user_login);
     public String getTypeName(int user_id);
+    public List<ExcursionTourist> listExcursionTouris(int excurs_id, int guide_id);
 }
