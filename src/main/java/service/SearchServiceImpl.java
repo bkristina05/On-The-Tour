@@ -1,6 +1,7 @@
 package service;
 
 import domain.ExcursionTourist;
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.classic.Session;
@@ -111,7 +112,7 @@ public class SearchServiceImpl implements SearchService {
             Session session2 = sessionFactory.getCurrentSession();
             session2.createSQLQuery("UPDATE excurs_guide " +
                     "SET tourist_quantity=(tourist_quantity + :numberPersons) " +
-                    "WHERE seq_excurs_guide=:idExcursion").
+                    "WHERE seq_excurs_guide=:idExcursion ").
                     setParameter("numberPersons", numberPersons).
                     setParameter("idExcursion", idExcursion).
                     executeUpdate();
@@ -146,7 +147,7 @@ public class SearchServiceImpl implements SearchService {
                             "users.name, " +
                             "users.phone, " +
                             "users.email, " +
-                            "excurs_tourist.excurs_guide_seq "+
+                            "excurs_tourist.sequence_id "+
                             " FROM excursion " +
                             "JOIN excurs_guide ON excursion.excurs_id = excurs_guide.excurs_id " +
                             "JOIN excurs_tourist ON excurs_guide.seq_excurs_guide = excurs_tourist.excurs_guide_seq " +
@@ -179,5 +180,57 @@ public class SearchServiceImpl implements SearchService {
         }
         return excursions;
     }
+
+    @Override
+    @Transactional
+    public void changeQuantity (Integer userId){
+        Query sqlQuery2 = sessionFactory.openSession().createSQLQuery(
+                "SELECT  tourist_quantity  " +
+                        "FROM excurs_tourist " +
+                        "WHERE user_id=:userId");
+        List<Object> rows2 = sqlQuery2.setParameter("userId", userId).list();
+
+        Integer quantity = (Integer)rows2.get(0);
+
+        sessionFactory.getCurrentSession().createSQLQuery(
+                "UPDATE excurs_guide " +
+                        "SET tourist_quantity=(tourist_quantity - :quantity) ").
+                setParameter("quantity", quantity).executeUpdate();
+
+    }
+
+    @Override
+    @Transactional
+    public boolean deleteExcursons (String login, Integer idExcursion) {
+
+        Session session = sessionFactory.openSession();
+        Query sqlQuery = session.createSQLQuery(
+                "SELECT user_id from users where login=:login"
+        );
+        List<Object> rows = sqlQuery.setParameter("login", login).list();
+
+        if (!rows.isEmpty()) {
+
+            Integer userId = (Integer) rows.get(0);
+            System.out.println("userId = " + userId);
+
+            try {
+                sessionFactory.getCurrentSession().createSQLQuery(
+                                "DELETE FROM excurs_tourist " +
+                                "WHERE user_id=:userId AND sequence_id=:idExcursion "
+                        ).setParameter("userId", userId).
+                          setParameter("idExcursion", idExcursion).executeUpdate();
+            } catch (HibernateException e) {
+                e.printStackTrace();
+            }
+
+            changeQuantity(userId);
+
+            return true;
+        }
+        else return false;
+    }
+
+
 }
 
