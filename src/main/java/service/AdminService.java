@@ -7,6 +7,7 @@ import domain.UserType;
 
 import java.util.List;
 
+
 /**
  * Created by Igor on 20.12.2014.
  */
