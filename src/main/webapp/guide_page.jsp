@@ -50,7 +50,70 @@
 
 
 
+<form method="POST" action="guide_page">
+        <input type='hidden' name="user_id" value="${user_id}"/>
+        <input type="hidden" name="login" value="${login}" />
+    <table>
+        <tr><td colspan="2" align="right"><input type="submit" name="goOnTour" value=" Записаться на тур"  class="demo" /></td></tr>
+        <tr><td colspan="2" align="right"><input type="submit" name="getExcursions" value="Показать экскурсии"  class="demo" /></td>
+        <td><%
+                Map<ExcursionGuide, Excursion> setExcursions=(HashMap<ExcursionGuide, Excursion>)request.getAttribute("Excursions");
+                Set<User> setTourists=(HashSet<User>)request.getAttribute("setTourists");
+                Integer id=(Integer)request.getAttribute("id_excursion");
+                out.println("<select name=\"select_excursion\">");
+                if(setExcursions!=null)
+                for (Map.Entry<ExcursionGuide, Excursion> exc: setExcursions.entrySet()){
+                    Date date=new Date(exc.getKey().getDate_excurs());
+                    GregorianCalendar calendar=new GregorianCalendar();
+                    calendar.setTime(date);
+                    Formatter f=new Formatter();
+		            String stringDate=f.format(", %tR %tD", date,date).toString();
+                   out.print("<option value=\""+exc.getKey().getSeq_excurs_guide()+"\">"+exc.getValue().getPlace()+", "+exc.getValue().getTown()+  stringDate+"</option>\n");
+                }
+            %>
+        </td></tr>
+        <tr><td colspan="2" align="right"><input type="submit" name="getTourists" value=" Показать туристов"  class="demo" /></td></tr>
+        </table>
+        <table border="2">
+        <%
+            List<ExcursionTourist>excTourists= (List<ExcursionTourist>) request.getAttribute("listExcursionTourist");
+            if(excTourists!=null)
+                if(!setTourists.isEmpty()){
+                    if(id!=null)
+                    for (Map.Entry<ExcursionGuide, Excursion> exc: setExcursions.entrySet()){
+                        Date date=new Date(exc.getKey().getDate_excurs());
+                        GregorianCalendar calendar=new GregorianCalendar();
+                        calendar.setTime(date);
+                        Formatter f=new Formatter();
+                        String stringDate=f.format("%tR %tD", date,date).toString();
+                        if(id.equals(exc.getKey().getSeq_excurs_guide()))out.println("<tr>Заявки на экскурсию \""+exc.getValue().getPlace()+", "+exc.getValue().getTown()+"\" на "+stringDate+"</tr>");
+                    }
 
+                    out.println("<tr><td>Номер заявки</td><td>Количество человек</td><td>Имя туриста</td><td>Номер телефона</td><td>адрес электронной почты</td></tr>");
+                    User tourist=new User();
+                    for(ExcursionTourist excursionTourist:excTourists){
+                        for(User user:setTourists){
+                            if((int)excursionTourist.getUser_id()==(int)user.getUser_id()){
+                                tourist=user;
+                            }
+                            if(excursionTourist.getUser_id()==user.getUser_id())break;
+                        }
+                        out.println("<tr><td>"+excursionTourist.getSequence_id()+"</td><td>"+excursionTourist.getTourist_quantity()+"</td><td>"+tourist.getName()+"</td><td>"+tourist.getPhone()+"</td><td>"+tourist.getEmail()+"</td></tr>");
+                    }
+                }else {
+                    if(id!=null)
+                        for (Map.Entry<ExcursionGuide, Excursion> exc: setExcursions.entrySet()){
+                            Date date=new Date(exc.getKey().getDate_excurs());
+                            GregorianCalendar calendar=new GregorianCalendar();
+                            calendar.setTime(date);
+                            Formatter f=new Formatter();
+                            String stringDate=f.format("%tR %tD", date,date).toString();
+                            if(id.equals(exc.getKey().getSeq_excurs_guide()))out.println("<tr>Заявок на экскурсию \""+exc.getValue().getPlace()+", "+exc.getValue().getTown()+"\" на "+stringDate+" нет</tr>");
+                        }
+                }
+        %>
+
+        </table>
             <table>
             <tr><td colspan="2" align="left"><input type="submit" name="addExcursion" value="Добавление/редактирование экскурсий"  class="demo" /></td></tr>
             <tr><td colspan="2" align="left"><input type="submit" name="appointExcursion" value="Назначить экскурсию"  class="demo" /></td></tr>
