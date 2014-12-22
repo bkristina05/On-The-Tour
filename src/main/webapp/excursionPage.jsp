@@ -30,15 +30,19 @@
             <table>
                 <tr><td><div align="right"><h1>${login}</h1></div></td>
                     <td></td><td></td><td></td>
-                    <td><form method="POST" action="privateOffice">
-                    <input type="hidden" name="login" value="${login}" />
-                    <input type="submit" name="privateOffice" value="Личный кабинет" class="demo" />
-                </form></td>
+                    <td>
+                        <form method="POST" action="privateOffice">
+                            <input type="hidden" name="login" value="${login}" />
+                            <input type="submit" name="privateOffice" value="Личный кабинет" class="demo" />
+                        </form>
+                    </td>
 
-                    <td><form method="POST" action="excursionPage">
-                        <input type="hidden" name="login" value="${login}" />
-                        <input type="submit" name="atHome" value="Домой" class="demo" />
-                    </form></td>
+                    <td>
+                        <form method="POST" action="excursionPage">
+                            <input type="hidden" name="login" value="${login}" />
+                            <input type="submit" name="atHome" value="Домой" class="demo" />
+                         </form>
+                    </td>
 
                 </tr></table>
         </td>
