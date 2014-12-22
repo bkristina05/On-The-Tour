@@ -40,7 +40,6 @@
                         <input type="submit" name="atHome" value="Домой" class="demo" />
                     </form></td>
 
-
                 </tr></table>
         </td>
     </tr>

@@ -73,3 +73,10 @@ h4 {
     background-image: url("images/footer.jpg");
     font-size:13px
 }
+
+
+.thumb img  {
+
+    margin-right: 10px; /* Отступ справа */
+    margin-bottom: 10px; /* Отступ снизу */
+}

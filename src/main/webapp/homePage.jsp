@@ -53,12 +53,18 @@
     
     <tr>
         <td class="center_col">
-            <figure>
-                <img src="images/7.gif" width="320" height="175" alt="Новгородский кремль">
-            </figure>
-            <figure>
-                <img src="images/5.jpg" width="320" height="175" alt="Псковский кремль">
-            </figure>
+            <p class="thumb">
+
+                <img src="images/1.jpg" width="320" height="175" alt="Красная площадь" title="Красная площадь">
+                <img src="images/2.JPG" width="320" height="175" alt="Оружейная палата" title="Оружейная палата">
+                <img src="images/3.jpg" width="320" height="175" alt="Третьяковская галерея" title="Третьяковская галерея">
+                <img src="images/5.jpg" width="320" height="175" alt="Псковский кремль" title="Псковский кремль">
+                <img src="images/6.jpg" width="320" height="175" alt="Троицкий собор" title="Троицкий собор Псков">
+                <img src="images/7.gif" width="320" height="175" alt="Новгородский кремль" title="Новгородский кремль">
+                <img src="images/8.jpg" width="320" height="175" alt="Великий Новгород" title="Памятник Тысячелетие России Великий Новгород">
+                <img src="images/9.jpg" width="320" height="175" alt="Нижний Новгород" title="Нижегородский Кремль Нижний Новгород">
+                <img src="images/11.jpg" width="320" height="175" alt="Крым" title="Крым">
+            </p>
         </td>
         <td class="right_col2">
         </td>
