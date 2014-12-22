@@ -62,4 +62,32 @@ public class SearchController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/rejectionOfTour", method = RequestMethod.POST)
+    public ModelAndView deleteExcursion (HttpServletRequest request, HttpServletResponse response)  throws IOException, ServletException{
+
+        String login = request.getParameter("login");
+        Integer idExcursion = Integer.valueOf(request.getParameter("idExcursion"));
+
+        System.out.println("login = " + login);
+        System.out.println("idExcursion = " + idExcursion);
+
+        ModelAndView modelAndView = new ModelAndView();
+        Boolean isDelete = searchService.deleteExcursons(login, idExcursion);
+        if(isDelete){
+            List<Excursion> excursions = searchService.getReservedExcursions(login);
+            System.out.println("excursions = " + excursions);
+
+            request.setAttribute("excursions", excursions);
+
+            modelAndView.addObject("login", login);
+            modelAndView.setViewName("privateOffice");
+        }
+        else {
+            System.out.println("Ошибка!");
+        }
+
+
+        return modelAndView;
+    }
+
 }

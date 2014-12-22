@@ -17,31 +17,56 @@
 
 </head>
 <body>
-
-<div align="right"><h1>${login}</h1></div>
-
-<form method="POST" action="privateOffice">
-    <input type="hidden" name="login" value="${login}" />
-    <div align="right"><input type="submit" name="privateOffice" value="Личный кабинет" class="demo" /></div>
-</form>
-
-<form method="POST" action="selectTown">
-    <table>
-    <tr><td>В каком городе хотите посетить экскурсию?</td></tr>
-        <%
-            List<String> towns = ((List<String>) request.getAttribute("towns"));
+<table cellpadding="0" cellspacing="0" width="100%" align="center">
+    <tr>
+        <td colspan="3" class="header"></td>
+    </tr>
+    <tr>
+        <td colspan="3" class="header1">
+            <form method="POST" action="selectTown">
+                <table>
+                    <tr><td><h1>В каком городе хотите посетить экскурсию?</h1></td>
+                    <%
+                        List<String> towns = ((List<String>) request.getAttribute("towns"));
 
 
-            out.println("<tr><td><select  name=\"townsSelect\">\n");
-            for (String town : towns) out.println("   <option  value=\""+town+"\">"+town+"</option>\n");
+                        out.println("<td><select  name=\"townsSelect\">\n");
+                        for (String town : towns) out.println("   <option  value=\""+town+"\">"+town+"</option>\n");
 
-            out.println("</select></td></tr>");
+                        out.println("</select></td>");
 
-        %>
-        <input type="hidden" name="login" value="${login}" />
+                    %>
+                    <input type="hidden" name="login" value="${login}" />
 
-    <tr><td colspan="2"><input type="submit" id="select" value="Выбрать" class="demo" /></td></tr>
-    </table>
-</form>
+                    <td colspan="2"><input type="submit" id="select" value="Выбрать" class="demo" /></td></tr>
+                </table>
+            </form>
+
+            <div align="right"><h1>${login}</h1></div>
+
+            <form method="POST" action="privateOffice">
+                <input type="hidden" name="login" value="${login}" />
+                <div align="right"><input type="submit" name="privateOffice" value="Личный кабинет" class="demo" /></div>
+            </form>
+        </td>
+    </tr>
+    
+    <tr>
+        <td class="center_col">Ширина ячейки в данном случае зависит от величины монитора или размера окна браузера.</td>
+        <td class="right_col2">
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="3" class="footer">
+            <b>Экскурсионные туры по России<br/>&copy; 2014</b>
+
+            <b><div align="right">Мы стараемся хорошо работать, чтобы вы хорошо отдыхали.</div>
+                <div align="right">Тел.: (495) 782-30-76, 514-71-00<br/></div>
+                <div align="right">e-mail: inforostour@mail.ru</div></b>
+        </td>
+    </tr>
+
+</table>
 </body>
 </html>

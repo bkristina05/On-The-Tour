@@ -12,4 +12,6 @@ public interface SearchService {
     public List<Excursion> getExcursions(String town);
     public Integer reserve(Integer idExcursion, String login, Integer numberPersons);
     public List<Excursion> getReservedExcursions (String login);
+    public boolean deleteExcursons (String login, Integer idExcursion);
+    public void changeQuantity (Integer userId);
 }

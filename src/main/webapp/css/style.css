@@ -15,7 +15,11 @@ h3 {
     color: green;
     font-size: 20px;
    }
-
+h4 {
+    font-family: Monaco;
+    color: #000000;
+    font-size: 20px;
+}
 
 
 .demo{
@@ -29,38 +33,43 @@ h3 {
     cursor: pointer; /* Изменение вида курсора при наведении*/
 }
 
-body {
-    background: #f3f2f3;
-    color: #000000;
-    font-family: Trebuchet MS, Arial, Times New Roman;
-    font-size: 12px;
-}
-#container {
-    background: #FFFFFF;
-    margin: 30px auto;
-    width: 900px;
-    height: 1000px;
-}
-#header {
-    background: #73C8F0;
-    height: 15%;
-    width: 900px;
+
+.header {
+     height:60px;
+     background-image: url("images/header.png");
+     padding:20px;
+     text-align:center;
+ }
+.header1 {
+    height:20px;
+    background-color:#dddddd;
+    padding:20px;
+    text-align:center;
 }
 
-#menu {
-    background: #ffffff;
-    float: left;
-    width: 20%;
-    height: 85%;
+.right_col {
+    width:120px;
+    height:460px;
+    background-color:#dddddd;
+    padding:15px;
+    vertical-align:top
 }
-#content {
-    background: #ffffff;
-    float: right;
-    width: 80%;
-    height: 85%;
+.right_col2 {
+    width:120px;
+    height:400px;
+    background-color:#ffffff;
+    padding:15px;
+    vertical-align:top
 }
-#footer {
-    background: #73C8F0;
-    height: 15%;
-    width: 900px;
+.center_col {
+    background-color:#ffffff;
+    padding:15px;
+    vertical-align:top
+}
+
+
+.footer {
+    padding:10px 0 10px 20px;
+    background-image: url("images/footer.jpg");
+    font-size:13px
 }
