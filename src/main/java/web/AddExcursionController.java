@@ -43,11 +43,9 @@ public class AddExcursionController {
             request.setAttribute("excursionList",adminService.getListExcursion());
             request.setAttribute("isAddExcursion",true);
             request.setAttribute("id_excursion",request.getParameter("excursionList"));
-            request.setAttribute("excursion",adminService.getExcursion(Integer.parseInt(request.getParameter("excursionList"))));
         }
         if(request.getParameter("save")!=null){
             request.setAttribute("excursionList",adminService.getListExcursion());
-            request.setAttribute("excursion",adminService.getExcursion(Integer.parseInt(request.getParameter("excursionList"))));
             request.setAttribute("id_excursion",request.getParameter("excursionList"));
             if(request.getParameter("move")!=null){
                 request.setAttribute("excursionList",adminService.getListExcursion());
@@ -79,6 +77,7 @@ public class AddExcursionController {
                 if(request.getParameter("move").equals("insert")){
 
                     adminService.addExcursion(excursion);
+                    request.setAttribute("success","Изменения сохранены!");
                     return  mav;
                 }
                 excursion.setExcurs_id(Integer.parseInt(request.getParameter("id_excursion")));

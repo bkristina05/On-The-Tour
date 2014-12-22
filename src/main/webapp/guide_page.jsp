@@ -20,7 +20,6 @@
 </head>
 <body>
 
-
 <table cellpadding="0" cellspacing="0" width="100%" align="center">
     <tr>
         <td colspan="3" class="header"></td>
@@ -158,9 +157,6 @@
         </td>
     </tr>
 </table>
-
-
-
 
 </body>
 </html>
