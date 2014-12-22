@@ -28,12 +28,15 @@ public class SearchServiceImpl implements SearchService {
     @Transactional
     public List<String> getTowns() {
         Session session = sessionFactory.openSession();
+
         Query sqlQuery = session.createSQLQuery("SELECT distinct " +
                 " town " +
                 "FROM excursion ");
         List<String> towns = new LinkedList<>();
 
         List<Object> rows = sqlQuery.list();
+
+
 
         for (Object row : rows) {
             String town = (String) row;
@@ -47,6 +50,8 @@ public class SearchServiceImpl implements SearchService {
     public List<Excursion> getExcursions(String town) {
 
         Session session = sessionFactory.openSession();
+
+
         Query sqlQuery = session.createSQLQuery(
                 "SELECT " +
                         "  e.place, " +
@@ -63,6 +68,7 @@ public class SearchServiceImpl implements SearchService {
         List<Excursion> excursions = new LinkedList<>();
 
         List<Object[]> rows = sqlQuery.setParameter("town", town).list();
+
 
         for (Object[] column : rows) {
             String place = (String) column[0];
@@ -92,6 +98,7 @@ public class SearchServiceImpl implements SearchService {
     @Transactional
     public Integer reserve(Integer idExcursion, String login, Integer numberPersons) {
         Session session = sessionFactory.openSession();
+
         Query sqlQuery = session.createSQLQuery(
                 "SELECT user_id from users where login=:login"
         );
@@ -102,23 +109,44 @@ public class SearchServiceImpl implements SearchService {
             Integer userId = (Integer) rows.get(0);
             System.out.println("userId = " + userId);
 
-            ExcursionTourist excursionTourist = new ExcursionTourist(userId, idExcursion, numberPersons);
+            Query sqlQuery2 = sessionFactory.getCurrentSession().createSQLQuery(
+                    "SELECT " +
+                            "  (e.max_tourists - eg.tourist_quantity) AS available_quantity " +
+                            "FROM Excursion e " +
+                            "  JOIN Excurs_Guide eg ON e.excurs_id = eg.excurs_id " +
+                            "WHERE eg.seq_excurs_guide=:idExcursion"
+            );
 
-            sessionFactory.getCurrentSession().save(excursionTourist);
-            Integer sequence_id = excursionTourist.getSequence_id();
+            Integer quantity = 0;
 
-            System.out.println("sequence_id = " + sequence_id);
+            List<Object> rows2 = sqlQuery2.setParameter("idExcursion", idExcursion).list();
 
-            Session session2 = sessionFactory.getCurrentSession();
-            session2.createSQLQuery("UPDATE excurs_guide " +
-                    "SET tourist_quantity=(tourist_quantity + :numberPersons) " +
-                    "WHERE seq_excurs_guide=:idExcursion ").
-                    setParameter("numberPersons", numberPersons).
-                    setParameter("idExcursion", idExcursion).
-                    executeUpdate();
-            return sequence_id;
+             quantity = (Integer) rows2.get(0);
+            System.out.println("quantity = " + quantity);
+            if(numberPersons > quantity){
+                return -1;
+            }
+            else{
+                ExcursionTourist excursionTourist = new ExcursionTourist(userId, idExcursion, numberPersons);
+
+
+                sessionFactory.getCurrentSession().save(excursionTourist);
+                Integer sequence_id = excursionTourist.getSequence_id();
+
+                System.out.println("sequence_id = " + sequence_id);
+
+                Session session2 = sessionFactory.getCurrentSession();
+                session2.createSQLQuery("UPDATE excurs_guide " +
+                        "SET tourist_quantity=(tourist_quantity + :numberPersons) " +
+                        "WHERE seq_excurs_guide=:idExcursion ").
+                        setParameter("numberPersons", numberPersons).
+                        setParameter("idExcursion", idExcursion).
+                        executeUpdate();
+
+                return sequence_id;
+            }
+
         }
-
     }
 
 
@@ -126,6 +154,7 @@ public class SearchServiceImpl implements SearchService {
     @Transactional
     public List<Excursion> getReservedExcursions(String login) {
         Session session = sessionFactory.openSession();
+
         Query sqlQuery = session.createSQLQuery(
                 "SELECT user_id from users where login=:login"
         );
@@ -184,6 +213,7 @@ public class SearchServiceImpl implements SearchService {
     @Override
     @Transactional
     public void changeQuantity (Integer userId){
+
         Query sqlQuery2 = sessionFactory.openSession().createSQLQuery(
                 "SELECT  tourist_quantity  " +
                         "FROM excurs_tourist " +
@@ -214,6 +244,9 @@ public class SearchServiceImpl implements SearchService {
             Integer userId = (Integer) rows.get(0);
             System.out.println("userId = " + userId);
 
+            session.beginTransaction();
+            
+            changeQuantity(userId);
             try {
                 sessionFactory.getCurrentSession().createSQLQuery(
                                 "DELETE FROM excurs_tourist " +
@@ -223,8 +256,7 @@ public class SearchServiceImpl implements SearchService {
             } catch (HibernateException e) {
                 e.printStackTrace();
             }
-
-            changeQuantity(userId);
+            session.getTransaction().commit();
 
             return true;
         }

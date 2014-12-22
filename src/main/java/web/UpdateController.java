@@ -3,6 +3,7 @@ package web;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import service.SearchService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,21 +24,29 @@ public class UpdateController {
     @RequestMapping(value = "/reservePlace", method = RequestMethod.GET)
     public @ResponseBody Response reserve(@RequestParam("login") String login,
                                           @RequestParam("idExcursion") Integer idExcursion,
-                                          @RequestParam("numberPersons") Integer numberPersons,
+                                          @RequestParam("numberPersons") String numberPersons,
                                           HttpServletRequest request, HttpServletResponse response
     ) throws IOException {
 
 
 
-
         Response result = new Response();
-
+        Integer quantity;
+        System.out.println("UpdateController.reserve");
         System.out.println("login = " + login);
         System.out.println("idExcursion = " + idExcursion);
         System.out.println("numberPersons = " + numberPersons);
-        Integer isReserve = searchService.reserve(idExcursion, login, numberPersons);
+
+        try {
+            quantity = Integer.valueOf(numberPersons);
+        } catch (NumberFormatException e) {
+            result.setText("Проверьте количество мест");
+            return result;
+        }
+
+        Integer isReserve = searchService.reserve(idExcursion, login, quantity);
         if(isReserve==-1){
-            result.setText("Заявка отклонена!");
+            result.setText("Заявка отклонена! Попробуйте ввести меньшее количество мест");
             return result;
         }
         else {
@@ -47,4 +56,7 @@ public class UpdateController {
         }
 
     }
+
+
+
 }
