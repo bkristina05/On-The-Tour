@@ -47,6 +47,13 @@ h4 {
     text-align:center;
 }
 
+.left_col {
+    width:120px;
+    height:460px;
+    background-color:#ffffff;
+    padding:15px;
+    vertical-align:top}
+
 .right_col {
     width:120px;
     height:460px;

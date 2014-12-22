@@ -16,30 +16,60 @@
   </style>
 </head>
 <body>
-<div align="right"><h1>${login}</h1></div>
-<form method="POST" action="excursionPage">
-    <input type="hidden" name="login" value="${login}" />
-    <div align="right"><input type="submit" name="atHome" value="Домой" class="demo" /></div>
-</form>
-<%
-  List<Excursion> excursions = ((List<Excursion>) request.getAttribute("excursions"));
-    if(excursions.isEmpty()) out.print("<h2>Вы не записаны на экскурсии</h2>");
-  out.println("<table>");
-  for (Excursion excursion : excursions){
-    out.println("<tr><td>Номер заявки</td><td>"+excursion.getIdExcursion()+"</td></tr> "+
-            "<tr><td>Город</td><td>"+excursion.getTown()+"</td></tr> "+
-            "<tr><td>Место</td><td>"+excursion.getPlace()+"</td></tr> "+
-            "<tr><td>Дата</td><td>"+excursion.getDate().toString("dd:MM:yy HH:mm")+"</td></tr>"+
-            "<tr><td>Продолжительность\n" + " (дни)</td><td>"+excursion.getDuration()+"</td></tr>"+
-            "<tr><td>Стоимость</td><td>"+excursion.getPrice()+"</td></tr>"+
-            "<tr><td>Количество \n" + "забронированных  +\n" + "  мест</td><td>"+excursion.getAvailable()+"</td></tr>"+
-            "<tr><td>Гид</td><td>"+excursion.getName()+"</td></tr>"+
-            "<tr><td>Email гида</td><td>"+excursion.getEmail()+"</td></tr>"+
-            "<tr><td>Телефон гида</td><td>"+excursion.getPhone()+"</td></tr>");
+<table cellpadding="0" cellspacing="0" width="100%" align="center">
+    <tr>
+        <td colspan="3" class="header"></td>
+    </tr>
+    <tr>
+        <td colspan="3" class="header1">
 
-  }
-  out.println("</table>");
+            <div align="right"><h1>${login}</h1></div>
 
-%>
+            <form method="POST" action="excursionPage">
+                <input type="hidden" name="login" value="${login}" />
+                <div align="right"><input type="submit" name="atHome" value="Домой" class="demo" /></div>
+            </form>
+        </td>
+    </tr>
+
+    <tr>
+        <td class="center_col">
+            <%
+                List<Excursion> excursions = ((List<Excursion>) request.getAttribute("excursions"));
+                if(excursions.isEmpty()) out.print("<h2>Вы не записаны на экскурсии</h2>");
+                out.println("<table>");
+                for (Excursion excursion : excursions){
+                    out.println("<tr><td>Номер заявки</td><td><font color=\"blue\"><b>"+excursion.getIdExcursion()+"</b></font></td></tr> "+
+                            "<tr><td>Город</td><td><font color=\"blue\"><b>"+excursion.getTown()+"</b></font></td></tr> "+
+                            "<tr><td>Место</td><td><font color=\"blue\"><b>"+excursion.getPlace()+"</b></font></td></tr> "+
+                            "<tr><td>Дата</td><td><font color=\"blue\">"+excursion.getDate().toString("dd:MM:yy HH:mm")+"</font></td></tr>"+
+                            "<tr><td>Продолжительность\n" + " (дни)</td><td><font color=\"blue\">"+excursion.getDuration()+"</font></td></tr>"+
+                            "<tr><td>Стоимость(руб.)</td><td><font color=\"blue\">"+excursion.getPrice()+"</font></td></tr>"+
+                            "<tr><td>Количество \n" + "забронированных  \n" + "  мест</td><td><font color=\"blue\">"+excursion.getAvailable()+"</font></td></tr>"+
+                            "<tr><td>Гид</td><td><font color=\"blue\">"+excursion.getName()+"</font></td></tr>"+
+                            "<tr><td>Email гида</td><td><font color=\"blue\">"+excursion.getEmail()+"</font></td></tr>"+
+                            "<tr><td>Телефон гида</td><td><font color=\"blue\">"+excursion.getPhone()+"</font></td></tr>");
+
+                }
+                out.println("</table><br/><br/>");
+
+            %>
+        </td>
+        <td class="right_col2">
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="3" class="footer">
+            <b>Экскурсионные туры по России<br/>&copy; 2014</b>
+
+            <b><div align="right">Мы стараемся хорошо работать, чтобы вы хорошо отдыхали.</div>
+                <div align="right">Тел.: (495) 782-30-76, 514-71-00<br/></div>
+                <div align="right">e-mail: inforostour@mail.ru</div></b>
+        </td>
+    </tr>
+
+</table>
+
 </body>
 </html>
