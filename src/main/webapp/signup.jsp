@@ -12,6 +12,7 @@
    <style><%@include file='css/style.css' %></style>
     <script type="text/JavaScript" src="js/jquery-1.9.1.min.js"> </script>
     <script type="text/JavaScript" src="js/signup.js"></script>
+    <title>Главная страница</title>
 </head>
 <body>
 <table cellpadding="0" cellspacing="0" width="100%" align="center">

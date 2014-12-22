@@ -18,6 +18,7 @@
 <head>
     <style> <%@include file='css/style.css' %> </style>
 </head>
+<title>Домашняя страница гида</title>
 <body>
 
 <table cellpadding="0" cellspacing="0" width="100%" align="center">

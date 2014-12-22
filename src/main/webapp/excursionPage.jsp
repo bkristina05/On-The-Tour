@@ -57,13 +57,13 @@
                 if(excursions.isEmpty()) out.println("<h2>Экскурсий в этот город временно нету</h2>");
                 else{
                     for (Excursion excursion : excursions){
-
                         out.println("<table>");
-                        out.println("<tr><td>Место</td><td>" +excursion.getPlace()+"</td></tr> "+
-                                "<tr><td>Описание</td><td>" +excursion.getDescription()+"</td></tr> "+
-                                "<tr><td>Дата</td><td>"+excursion.getDate().toString("dd:MM:yy HH:mm")+"</td></tr>"+
-                                "<tr><td>Продолжительность(дни)</td><td>"+excursion.getDuration()+"</td></tr>"+
-                                "<tr><td>Цена(руб.)</td><td>"+excursion.getPrice()+"</td></tr>");
+                        out.println("<tr><td>Город</td><td><font color=\"blue\">" +excursion.getTown()+"</font></td></tr>"+
+                                "<tr><td>Место</td><td><font color=\"blue\">" +excursion.getPlace()+"</font></td></tr> "+
+                                "<tr><td>Описание</td><td><font color=\"blue\">" +excursion.getDescription()+"</font></td></tr> "+
+                                "<tr><td>Дата</td><td><font color=\"blue\">"+excursion.getDate().toString("dd:MM:yy HH:mm")+"</font></td></tr>"+
+                                "<tr><td>Продолжительность(дни)</td><td><font color=\"blue\">"+excursion.getDuration()+"</font></td></tr>"+
+                                "<tr><td>Цена(руб.)</td><td><font color=\"blue\">"+excursion.getPrice()+"</font></td></tr>");
                         out.println("<tr><td>Количество мест</td>");
                         if (excursion.getAvailable()==0) out.println("<td><h2>Нет свободных мест</h2>");
                         else

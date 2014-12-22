@@ -14,6 +14,7 @@
   <style>
     <%@include file='css/style.css' %>
   </style>
+    <title>Личный кабинет</title>
 </head>
 <body>
 <table cellpadding="0" cellspacing="0" width="100%" align="center">

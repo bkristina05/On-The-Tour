@@ -16,6 +16,7 @@
 
 <head>
     <style> <%@include file='css/style.css' %> </style>
+    <title>Домашняя страница администратора</title>
 </head>
 
 <body>

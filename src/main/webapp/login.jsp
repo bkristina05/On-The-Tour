@@ -5,7 +5,7 @@
 <html>
 <head>
     <style> <%@include file='css/style.css' %> </style>
-
+    <title>Главная страница</title>
 </head>
 <body>
 <table cellpadding="0" cellspacing="0" width="100%" align="center">
