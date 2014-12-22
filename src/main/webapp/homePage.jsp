@@ -52,7 +52,14 @@
     </tr>
     
     <tr>
-        <td class="center_col">Ширина ячейки в данном случае зависит от величины монитора или размера окна браузера.</td>
+        <td class="center_col">
+            <figure>
+                <img src="images/7.gif" width="320" height="175" alt="Новгородский кремль">
+            </figure>
+            <figure>
+                <img src="images/5.jpg" width="320" height="175" alt="Псковский кремль">
+            </figure>
+        </td>
         <td class="right_col2">
         </td>
     </tr>
