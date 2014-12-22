@@ -49,6 +49,7 @@ public class AdminController {
                 int typeId=Integer.parseInt(request.getParameter(userType.getUser_id().toString()));
                 if(userType.getType_id().intValue()!=1&&(userType.getType_id().intValue()!=typeId)){
                     adminService.saveUserType(userType.getUser_id().intValue(),typeId);
+                    request.setAttribute("success","Изменения сохранены!");
                 }
             }
         }

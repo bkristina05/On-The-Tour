@@ -37,7 +37,6 @@
                 <input type="submit" name="addExcursion" value="Добавление/редактирование экскурсий"  class="demo" />
             </form>
         </td>
-
     </tr>
 
     <tr>

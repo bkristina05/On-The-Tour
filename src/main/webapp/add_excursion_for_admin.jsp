@@ -77,7 +77,6 @@
     <tr>
         <td class="header3">
             <form method="POST" action="add_excursion_for_admin">
-
                     <%
                         out.println("<table>"+
                                 "<tr><td colspan=\"2\" align=\"left\"><input type=\"submit\" name=\"newExcursion\" value=\"Добавить экскурсию\"  class=\"demo\" /></td></tr></table>");
