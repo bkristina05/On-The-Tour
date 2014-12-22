@@ -30,14 +30,9 @@
                 <input type="hidden" name="login" value="${login}" />
                 <div align="right"><input type="submit" name="atHome" value="Домой" class="demo" /></div>
             </form>
-        </td>
-    </tr>
-
-    <tr>
-        <td colspan="3" class="header1">
 
                 <% out.println("<form method=\"POST\" action=\"rejectionOfTour\">\n" +
-                        "            <table><caption><font color=\"blue\"><b>Отказ от экскурсии</b></font></caption>\n" +
+                        "            <table align=\"left\" ><caption><font color=\"blue\"><b>Отказ от экскурсии</b></font></caption>\n" +
                         "                <tr><td><font color=\"blue\">Номер заявки</font></td></tr>");
                     List<Excursion> excursions = ((List<Excursion>) request.getAttribute("excursions"));
                     out.println("<tr><td><select name=\"idExcursion\">\n");
@@ -50,8 +45,6 @@
                                     "            </table>\n" +
                                     "          </form>");
                 %>
-
-
             <h3 id="resultReservePlace"></h3>
         </td>
     </tr>
