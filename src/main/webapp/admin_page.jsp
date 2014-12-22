@@ -12,9 +12,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
+
 <head>
     <style> <%@include file='css/style.css' %> </style>
 </head>
+
 <body>
 <div align="left"><h1>Здравствуйте, ${login}</h1></div>
 <form method="POST" action="admin_page">
@@ -55,4 +57,5 @@
     </table>
 </form>
 </body>
+
 </html>
